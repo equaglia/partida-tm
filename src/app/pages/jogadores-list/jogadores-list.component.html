@@ -1,0 +1,21 @@
+<div class="card w-100 my-5">
+    <div class="card-body">
+        <button class="btn btn-primary" [routerLink]="['/jogadores/novo']">Novo Jogador</button>
+        <h2 class="card-title text-center">{{ lista }}</h2>
+        <table class="table">
+            <thead> </thead>
+            <tbody>
+                <tr *ngFor="let jogd of jogadores">
+                    <!-- <td>{{ jogador.id }}</td> -->
+                    <td>{{ jogd.nome }}</td>
+                    <td>{{ jogd.sobrenome }}</td>
+                    <td>{{ jogd.status }}</td>
+                    <td>{{ jogd.categoria }}</td>
+<!--                     <td>
+                        <button class="btn btn-primary" [routerLink]="['/jogador', jogador.id]">Detalhes</button>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
