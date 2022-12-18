@@ -1,49 +1,5 @@
-<form (ngSubmit)="submit()" [formGroup]="momentForm" #formDir="ngForm">
-  <div class="form-group">
-    <label for="nome">Nome</label>
-    <input
-      type="text"
-      placeholder="coloque o nome"
-      formControlName="nome"
-      required
-    />
-    <div *ngIf="nome.invalid && formDir.submitted" class="validation-error">
-      <p *ngIf="nome.errors?.['required']">O nome é obrigatório</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="sobrenome">Sobrenome</label>
-    <input
-      type="text"
-      placeholder="coloque o sobrenome"
-      formControlName="sobrenome"
-      required
-    />
-    <div
-      *ngIf="sobrenome.invalid && formDir.submitted"
-      class="validation-error"
-    >
-      <p *ngIf="sobrenome.errors?.['required']">O sobrenome é obrigatório</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="categoria">Categoria</label>
-    <input
-      type="text"
-      placeholder="coloque a categoria do jogador"
-      formControlName="categoria"
-      required
-    />
-    <div
-      *ngIf="categoria.invalid && formDir.submitted"
-      class="validation-error"
-    >
-      <p *ngIf="categoria.errors?.['required']">Categoria deve ser A, B, C, D</p>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="image">Coloque a foto</label>
-    <input type="file" (change)="onFileSelected($event)" />
-  </div>
-  <input type="submit" value="{{ btnText }}" />
-</form>
+<h2>Novo <span>Jogador</span></h2>
+<app-jogador-form
+  [btnText]="btnText"
+  (onSubmit)="createHandler($event)"
+></app-jogador-form>
