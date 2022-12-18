@@ -1,5 +1,5 @@
+import { PartidaNovaComponent } from './pages/partida-nova/partida-nova.component';
 import { JogadorFormComponent } from './components/jogador-form/jogador-form.component';
-//import { NovoJogadorComponent } from './components/novo-jogador/novo-jogador.component';
 import { PartidasListComponent } from './pages/partidas-list/partidas-list.component';
 import { JogadoresListComponent } from './pages/jogadores-list/jogadores-list.component';
 import { NgModule } from '@angular/core';
@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'jogadores', component: JogadoresListComponent },
   { path: 'jogadores/novo', component: JogadorFormComponent },
   { path: 'partidas', component: PartidasListComponent },
+  { path: 'partidas/nova', component: PartidaNovaComponent },
 ];
 
 @NgModule({
