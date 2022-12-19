@@ -1,1 +1,5 @@
-<p>partida-nova works!</p>
+<h2>Nova <span>Partida</span></h2>
+<app-partida-form
+  [btnText]="btnText"
+  (onSubmit)="createHandler($event)"
+></app-partida-form>

@@ -1,3 +1,4 @@
+import { FormGroup } from '@angular/forms';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
@@ -18,9 +19,17 @@ export class PartidaService {
     return this.http.get<Partida[]>(this.apiUrl);
   }
 
-  createPartida(id_a: number, id_b: number) {
+  createPartida(adversarios: FormGroup) {
+    console.log(adversarios.value);
     this.http
-      .post<Partida>(`${this.apiUrl}`+'/'+`${id_a}`+'/'+`${id_b}`, {})
+      .post<any>(
+        `${this.apiUrl}` +
+          '/' +
+          `${adversarios.controls['jogadorA'].value!}` +
+          '/' +
+          `${adversarios.controls['jogadorB'].value!}`,
+        {}
+      )
       .pipe(
         catchError((error: any, caught: Observable<any>): Observable<any> => {
           this.errorMessage = error.message;
@@ -29,15 +38,6 @@ export class PartidaService {
         })
       )
       .subscribe();
-    console.log(
-      'criou partida ' /* +
-        partida.jogadores[0] +
-        ' ' +
-        partida.gamesVencidosA +
-        ' X ' +
-        partida.gamesVencidosB +
-        ' ' +
-        partida.jogadores[1] */
-    );
+    console.log('criou partida ');
   }
 }

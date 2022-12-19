@@ -11,12 +11,12 @@ import { JogadorService } from 'src/app/services/jogador.service';
 export class JogadorFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Jogador>();
   @Input() btnText!: string;
-  momentForm!: FormGroup;
+  jogadorForm!: FormGroup;
 
   constructor(private jogadorService: JogadorService) {}
 
   ngOnInit(): void {
-    this.momentForm = new FormGroup({
+    this.jogadorForm = new FormGroup({
       nome: new FormControl('', [Validators.required]),
       sobrenome: new FormControl('', [Validators.required]),
       categoria: new FormControl('', [Validators.required]),
@@ -24,27 +24,27 @@ export class JogadorFormComponent implements OnInit {
   }
 
   get nome() {
-    return this.momentForm.get('nome')!;
+    return this.jogadorForm.get('nome')!;
   }
   get sobrenome() {
-    return this.momentForm.get('sobrenome')!;
+    return this.jogadorForm.get('sobrenome')!;
   }
   get categoria() {
-    return this.momentForm.get('categoria')!;
+    return this.jogadorForm.get('categoria')!;
   }
 
   submit() {
-    if (this.momentForm.invalid) {
+    if (this.jogadorForm.invalid) {
       return;
     }
-    console.log(this.momentForm.value);
+    console.log(this.jogadorForm.value);
 
-    this.onSubmit.emit(this.momentForm.value);
+    this.onSubmit.emit(this.jogadorForm.value);
   }
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
 
-    this.momentForm.patchValue({ image: file });
+    this.jogadorForm.patchValue({ image: file });
   }
 }
