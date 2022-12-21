@@ -27,7 +27,9 @@ export class PartidaService {
           '/' +
           `${adversarios.controls['jogadorA'].value!}` +
           '/' +
-          `${adversarios.controls['jogadorB'].value!}`,
+          `${adversarios.controls['jogadorB'].value!}` +
+          '/' +
+          `${adversarios.controls['games'].value!}`,
         {}
       )
       .pipe(

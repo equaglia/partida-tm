@@ -28,20 +28,19 @@
   </div>
   <div class="form-group">
     <label for="categoria">Categoria</label>
-    <input
-      type="text"
-      placeholder="coloque a categoria do jogador"
-      formControlName="categoria"
-      required
-    />
-    <div
-      *ngIf="categoria.invalid && formDir.submitted"
-      class="validation-error"
-    >
-      <p *ngIf="categoria.errors?.['required']">Categoria deve ser A, B, C, D</p>
-    </div>
+    <select formControlName="categoria">
+      <option
+        *ngFor="let categoriaJogador of categorias"
+        [value]="categoriaJogador"
+      >
+        {{ categoriaJogador }}
+      </option>
+    </select>
   </div>
-<!--   <div class="form-group">
+  <div *ngIf="categoria.invalid && formDir.submitted" class="validation-error">
+    <p *ngIf="categoria.errors?.['required']">A categoria é obrigatória</p>
+  </div>
+  <!--   <div class="form-group">
     <label for="image">Coloque a foto</label>
     <input type="file" (change)="onFileSelected($event)" />
   </div> -->

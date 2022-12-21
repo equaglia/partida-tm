@@ -1,6 +1,6 @@
 import { PartidaService } from './../../services/partida.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-partida-form',
@@ -11,6 +11,13 @@ export class PartidaFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<FormGroup>();
   @Input() btnText!: string;
   adversariosForm!: FormGroup;
+  quantidadeGames = [1, 3, 5, 7, 9];
+
+  @ViewChild('teams') teams!: ElementRef;
+	selectedGames = '';
+	onSelected():void {
+		this.selectedGames = this.teams.nativeElement.value;
+	}
 
   constructor(private partidaService: PartidaService) {}
 
@@ -18,7 +25,9 @@ export class PartidaFormComponent implements OnInit {
     this.adversariosForm = new FormGroup({
       jogadorA: new FormControl('', [Validators.required]),
       jogadorB: new FormControl('', [Validators.required]),
+      games: new FormControl('', [Validators.required]),
     });
+    this.adversariosForm.controls['games'].setValue(5);
   }
 
   get jogadorA() {
@@ -27,6 +36,10 @@ export class PartidaFormComponent implements OnInit {
 
   get jogadorB() {
     return this.adversariosForm.get('jogadorB')!;
+  }
+
+  get games() {
+    return this.adversariosForm.get('games')!;
   }
 
   submit() {

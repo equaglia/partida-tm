@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: 'jogadores/novo', component: JogadorNovoComponent },
   { path: 'partidas', component: PartidasListComponent },
   { path: 'partidas/nova', component: PartidaNovaComponent },
+  { path: 'temp', component: JogadoresListComponent },
 ];
 
 @NgModule({

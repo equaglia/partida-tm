@@ -1,3 +1,4 @@
+import { Categoria, CategoriaMapping } from './../../models/enums/categoria';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Jogador } from 'src/app/models/jogador';
@@ -12,6 +13,9 @@ export class JogadorFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Jogador>();
   @Input() btnText!: string;
   jogadorForm!: FormGroup;
+  public CategoriaMapping = CategoriaMapping;
+  public categorias = Object.values(Categoria);
+
 
   constructor(private jogadorService: JogadorService) {}
 

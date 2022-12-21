@@ -1,29 +1,43 @@
 <form (ngSubmit)="submit()" [formGroup]="adversariosForm" #formDir="ngForm">
-    <div class="form-group">
-        <label for="jogadorA">Jogador A</label>
-        <input
-          type="number"
-          placeholder="escolha o jogador A"
-          formControlName="jogadorA"
-          required
-        />
-        <div *ngIf="jogadorA.invalid && formDir.submitted" class="validation-error">
-          <p *ngIf="jogadorA.errors?.['required']">O jogadorA é obrigatório</p>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="jogadorB">Jogador B</label>
-        <input
-          type="number"
-          placeholder="escolha o jogador B"
-          formControlName="jogadorB"
-          required
-        />
-        <div *ngIf="jogadorB.invalid && formDir.submitted" class="validation-error">
-          <p *ngIf="jogadorB.errors?.['required']">O jogadorB é obrigatório</p>
-        </div>
-      </div> 
-      <input type="submit" value="{{ btnText }}" />
-    </form>
- 
-  
+  <div class="form-group">
+    <label for="jogadorA">Jogador A</label>
+    <input
+      type="number"
+      placeholder="escolha o jogador A"
+      formControlName="jogadorA"
+      required
+    />
+    <div *ngIf="jogadorA.invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="jogadorA.errors?.['required']">O jogadorA é obrigatório</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="jogadorB">Jogador B</label>
+    <input
+      type="number"
+      placeholder="escolha o jogador B"
+      formControlName="jogadorB"
+      required
+    />
+    <div *ngIf="jogadorB.invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="jogadorB.errors?.['required']">O jogadorB é obrigatório</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="games">Quantidade de Games</label>
+    <select formControlName="games">
+      <option
+        *ngFor="let item of quantidadeGames"
+        [value]="item"
+      >
+        {{ item }}
+      </option>
+    </select>
+    <div *ngIf="games.invalid && formDir.submitted" class="validation-error">
+      <p *ngIf="games.errors?.['required']">
+        A quantidade de games é obrigatória
+      </p>
+    </div>
+  </div>
+  <input type="submit" value="{{ btnText }}" />
+</form>
