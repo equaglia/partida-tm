@@ -1,7 +1,7 @@
 import { FormGroup } from '@angular/forms';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, of, map } from 'rxjs';
 import { Partida } from './../models/partida';
 import { Injectable } from '@angular/core';
 
@@ -17,6 +17,20 @@ export class PartidaService {
 
   getAll(): Observable<Partida[]> {
     return this.http.get<Partida[]>(this.apiUrl);
+  }
+
+  retrieveById(id: number): Observable<Partida | undefined> {
+    return this.http
+      .get<Partida[]>(this.apiUrl)
+      .pipe(map((partida) => partida.find((e) => e.id === id)));
+  }
+
+  getJogador(partida: Partida | undefined, adversario: number) {
+    return partida?.jogadores[adversario].nome;
+  }
+
+  primeiroSacador(partida: Partida | undefined): string | undefined {
+    return partida?.jogadorPrimeiroSacador.nome;
   }
 
   createPartida(adversarios: FormGroup) {

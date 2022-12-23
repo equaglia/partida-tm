@@ -4,7 +4,7 @@ import { Jogador } from './jogador';
 export interface Partida {
   id: number;
   jogadores: Jogador[];
-  primeiroSacador: Jogador;
+  jogadorPrimeiroSacador: Jogador;
   games: Game[];
   inicio: Date;
   fim: Date;

@@ -13,6 +13,7 @@ import { JogadorNovoComponent } from './pages/jogador-novo/jogador-novo.componen
 import { JogadorFormComponent } from './components/jogador-form/jogador-form.component';
 import { PartidaFormComponent } from './components/partida-form/partida-form.component';
 import { PartidaNovaComponent } from './pages/partida-nova/partida-nova.component';
+import { DetalhesPartidaFormComponent } from './components/detalhes-partida-form/detalhes-partida-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PartidaNovaComponent } from './pages/partida-nova/partida-nova.componen
     JogadorNovoComponent,
     JogadorFormComponent,
     PartidaFormComponent,
-    PartidaNovaComponent
+    PartidaNovaComponent,
+    DetalhesPartidaFormComponent
   ],
   imports: [
     BrowserModule,

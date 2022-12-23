@@ -1,3 +1,4 @@
+import { DetalhesPartidaFormComponent } from './components/detalhes-partida-form/detalhes-partida-form.component';
 import { JogadorNovoComponent } from './pages/jogador-novo/jogador-novo.component';
 import { PartidaNovaComponent } from './pages/partida-nova/partida-nova.component';
 import { PartidasListComponent } from './pages/partidas-list/partidas-list.component';
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'jogadores/novo', component: JogadorNovoComponent },
   { path: 'partidas', component: PartidasListComponent },
   { path: 'partidas/nova', component: PartidaNovaComponent },
+  { path: 'partida/:id', component: DetalhesPartidaFormComponent },
   { path: 'temp', component: JogadoresListComponent },
 ];
 
