@@ -15,6 +15,7 @@
           <td>{{ ptd.gamesVencidosB }}</td>
           <td>{{ ptd.jogadores[1].nome }}</td>
           <td>{{ ptd.partidaStatus }}</td>
+          <td>{{ quantidadeGames(ptd) }}</td>
           <td>
             <button class="btn btn-primary" [routerLink]="['/partida', ptd.id]">
               Detalhes

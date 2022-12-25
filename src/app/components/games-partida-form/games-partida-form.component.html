@@ -1,0 +1,21 @@
+<div class="card w-100 my-5">
+  <div class="card-body">
+    <h2 class="card-title text-center">
+    </h2>
+    <table class="table">
+        <td></td>
+        <td>
+            <tr class="apagar">&nbsp;</tr> 
+            <tr>&nbsp;</tr> 
+            <tr> <th>{{ getJogador(0) }} </th></tr>
+            <tr> <th>{{ getJogador(1) }} </th></tr>
+        </td>
+        <td *ngFor="let gms of games">
+            <tr class="apagar">{{gms.id}}</tr>
+            <tr><th> {{gameOrdem(gms)}}</th></tr>
+            <tr>{{gms.pontos[0].pontos}}</tr>
+            <tr>{{gms.pontos[1].pontos}}</tr>
+        </td>
+    </table>
+  </div>
+</div>

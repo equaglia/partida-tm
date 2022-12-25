@@ -4,31 +4,23 @@
       <td>Partida ID:</td>
       <td>{{ partida?.id }}</td>
     </tr>
-    <tr>
-      <td>{{ partida?.inicio }}</td>
-      <td>-</td>
-      <td>{{ partida?.fim }}</td>
-    </tr>
-    <tr>
-      {{ partida?.games }}
-    </tr>
-    <tr>
-      {{ partida?.games }}
-    </tr>
+    <tr>Duração: {{ duracao() }}</tr>
+    <table>
+      <tr>
+        <td>{{ getJogador(0) }}</td>
+        <td>{{ partida?.gamesVencidosA }}</td>
+        <td> X </td>
+        <td>{{ partida?.gamesVencidosB }}</td>
+        <td>{{ getJogador(1) }}</td>
+      </tr>
+    </table>
+    <app-games-partida-form></app-games-partida-form>
     <tr>
       <td>Status: {{ partida?.partidaStatus }}</td>
     </tr>
     <tr>
       <td>Primeiro sacador: {{ primeiroSacador() }}</td>
+      <td>Game atual: {{ gameAtualIndice() }}</td>
     </tr>
   </tbody>
-</table>
-<table>
-  <tr>
-    <td>{{ getJogador(0) }}</td>
-    <td>{{ partida?.gamesVencidosA }}</td>
-    <td> X </td>
-    <td>{{ partida?.gamesVencidosB }}</td>
-    <td>{{ getJogador(1) }}</td>
-  </tr>
 </table>

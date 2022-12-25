@@ -56,4 +56,43 @@ export class PartidaService {
       .subscribe();
     console.log('criou partida ');
   }
+
+  duracaoPartida(partida: Partida | undefined): string {
+    if (partida == undefined) return '00:00';
+
+    partida = partida;
+    if (partida.inicioPartida == undefined) return '00:00';
+
+    var inicio = new Date(partida.inicioPartida).getTime();
+
+    var fim = new Date().getTime();
+    if (!(partida.fimPartida == undefined || partida.fimPartida == null)) {
+      fim = new Date(partida.fimPartida).getTime();
+    }
+    var ms = Math.abs(fim - inicio);
+
+    var total_seconds = ms / 1000;
+
+    var horas = Math.floor(total_seconds / 3600);
+    var minutos = Math.floor((total_seconds - horas * 3600) / 60);
+    var segundos = Math.floor(total_seconds - horas * 3600 - minutos * 60);
+    var horaMinuto =
+      horas.toString().padStart(2, '0') +
+      ':' +
+      minutos.toString().padStart(2, '0') +
+      ':' +
+      segundos.toString().padStart(2, '0');
+    return horaMinuto;
+  }
+
+  quantidadeGames(partida: Partida) {
+    return partida.games.length;
+  }
+
+  gameAtualIndice(partida: Partida | undefined): number {
+    var indice;
+    if (partida == undefined) return -1;
+    indice = partida?.games[partida.gameAtualIndice].id;
+    return indice;
+  }
 }

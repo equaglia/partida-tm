@@ -21,7 +21,9 @@ export class PartidasListComponent implements OnInit {
     (this.partidas = partidas));
    }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
+  quantidadeGames(partida: Partida): number {
+    return this.partidaService.quantidadeGames(partida);
+  }
 }

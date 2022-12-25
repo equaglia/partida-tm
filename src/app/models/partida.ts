@@ -6,9 +6,10 @@ export interface Partida {
   jogadores: Jogador[];
   jogadorPrimeiroSacador: Jogador;
   games: Game[];
-  inicio: Date;
-  fim: Date;
+  inicioPartida: Date;
+  fimPartida: Date;
   partidaStatus: string;
   gamesVencidosA: number;
   gamesVencidosB: number;
+  gameAtualIndice: number;
 }

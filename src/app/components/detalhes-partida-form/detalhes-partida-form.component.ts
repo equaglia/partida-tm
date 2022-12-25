@@ -37,4 +37,12 @@ export class DetalhesPartidaFormComponent implements OnInit {
   primeiroSacador(): string | undefined {
     return this.partidaService.primeiroSacador(this.partida);
   }
+
+  duracao(): string {
+    return this.partidaService.duracaoPartida(this.partida);
+  }
+
+  gameAtualIndice(): number {
+    return this.partidaService.gameAtualIndice(this.partida);
+  }
 }
