@@ -1,3 +1,4 @@
+import { Game } from './../../models/game';
 import { Partida } from './../../models/partida';
 import { PartidaService } from './../../services/partida.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class DetalhesPartidaFormComponent implements OnInit {
   partida: Partida | undefined;
+  ascending: Game[] = [];
 
   constructor(
     private partidaService: PartidaService,
@@ -23,6 +25,7 @@ export class DetalhesPartidaFormComponent implements OnInit {
       .subscribe({
         next: (response: Partida | undefined) => {
           this.partida = response;
+          this.partida?.games.sort((a, b) => Number(a.id) - Number(b.id));
         },
         error: (error) => {
           console.log(error);

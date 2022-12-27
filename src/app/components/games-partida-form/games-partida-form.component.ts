@@ -35,6 +35,7 @@ export class GamesPartidaFormComponent implements OnInit {
       .subscribe({
         next: (response: Partida | undefined) => {
           this.partida = response;
+          this.partida?.games.sort((a, b) => Number(a.id) - Number(b.id));
           this.games = response?.games;
         },
         error: (error) => {

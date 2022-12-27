@@ -90,9 +90,11 @@ export class PartidaService {
   }
 
   gameAtualIndice(partida: Partida | undefined): number {
-    var indice;
+    var indice = 0;
     if (partida == undefined) return -1;
-    indice = partida?.games[partida.gameAtualIndice].id;
+
+    if (partida.gameAtualIndice > 0)
+      indice = partida.games[partida.gameAtualIndice].id;
     return indice;
   }
 }
