@@ -8,12 +8,15 @@
       <thead></thead>
       <tbody>
         <tr *ngFor="let ptd of partidas">
-          <!-- <td>{{ jogador.id }}</td> -->
-          <td>{{ ptd.jogadores[0].nome }}</td>
+          <td>{{ ptd.id }}</td>
+          <!-- <td>{{ ptd.jogadores[0].nome }}</td> -->
+          <td>{{ ptd.jogadorA.nome }}</td>
           <td>{{ ptd.gamesVencidosA }}</td>
           <td>X</td>
           <td>{{ ptd.gamesVencidosB }}</td>
-          <td>{{ ptd.jogadores[1].nome }}</td>
+          <!-- <td>{{ ptd.jogadores[1].nome }}</td> -->
+          <td>{{ ptd.jogadorB.nome }}</td>
+          
           <td>{{ ptd.partidaStatus }}</td>
           <td>{{ quantidadeGames(ptd) }}</td>
           <td>

@@ -44,9 +44,19 @@ export class GamesPartidaFormComponent implements OnInit {
       });
   }
 
-  getJogador(adversario: number): string | undefined {
+/*   getJogador(adversario: number): string | undefined {
     return this.partidaService.getJogador(this.partida, adversario);
   }
+ */
+  getJogadorA(){
+    return this.partidaService.getJogadorA(this.partida!);
+  }
+
+  getJogadorB(){
+    return this.partidaService.getJogadorB(this.partida!);
+  }
+
+
 
   gameOrdem(game: Game|undefined): number{
     return this.games!.indexOf(game!) + 1;

@@ -7,8 +7,10 @@
         <td>
             <tr class="apagar">&nbsp;</tr> 
             <tr>&nbsp;</tr> 
-            <tr> <th>{{ getJogador(0) }} </th></tr>
-            <tr> <th>{{ getJogador(1) }} </th></tr>
+            <tr><th>{{ partida?.jogadorA?.nome }}</th></tr>
+            <tr><th>{{ partida?.jogadorB?.nome }}</th></tr>
+            <!-- <tr> <th>{{ getJogadorA() }} </th></tr>
+            <tr> <th>{{ getJogadorB() }} </th></tr> -->
         </td>
         <td *ngFor="let gms of games">
             <tr class="apagar">{{gms.id}}</tr>

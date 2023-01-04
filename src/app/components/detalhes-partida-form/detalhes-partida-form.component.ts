@@ -25,7 +25,7 @@ export class DetalhesPartidaFormComponent implements OnInit {
       .subscribe({
         next: (response: Partida | undefined) => {
           this.partida = response;
-          this.partida?.games.sort((a, b) => Number(a.id) - Number(b.id));
+//          this.partida?.games.sort((a, b) => Number(a.id) - Number(b.id));
         },
         error: (error) => {
           console.log(error);
@@ -33,9 +33,18 @@ export class DetalhesPartidaFormComponent implements OnInit {
       });
   }
 
-  getJogador(adversario: number): string | undefined {
+/*   getJogador(adversario: number): string | undefined {
     return this.partidaService.getJogador(this.partida, adversario);
+  } */
+
+  getJogadorA(){
+    return this.partidaService.getJogadorA(this.partida!);
   }
+
+  getJogadorB(){
+    return this.partidaService.getJogadorB(this.partida!);
+  }
+
 
   primeiroSacador(): string | undefined {
     return this.partidaService.primeiroSacador(this.partida);
