@@ -7,20 +7,23 @@
     <tr>Duração: {{ duracao() }}</tr>
     <table>
       <tr>
-        <!-- <td>{{ getJogadorA() }}</td> -->
         <td>{{ partida?.jogadorA?.nome }}</td>
         <td>{{ partida?.gamesVencidosA }}</td>
         <td> X </td>
         <td>{{ partida?.gamesVencidosB }}</td>
         <td>{{ partida?.jogadorB?.nome }}</td>
-        <!-- <td>{{ getJogadorB() }}</td> -->
       </tr>
     </table>
     <app-games-partida-form></app-games-partida-form>
     <tr>
       <td>Status: {{ partida?.partidaStatus }}</td>
     </tr>
-    <tr>
+    <td>
+      <button class="btn btn-secondary" (click)="iniciarPartida(partida?.id!)">
+        {{ partidaIniciada ? '' : 'iniciar' }}
+      </button>
+    </td>
+<tr>
       <td>Primeiro sacador: {{ primeiroSacador() }}</td>
       <td>Game atual: {{ gameAtualIndice() }}</td>
     </tr>

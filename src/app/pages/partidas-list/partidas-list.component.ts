@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PartidasListComponent implements OnInit {
   partidas: Partida[] = [];
-
   lista: string = "Lista de partidas";
 
   constructor(private partidaService: PartidaService) {
@@ -26,4 +25,9 @@ export class PartidasListComponent implements OnInit {
   quantidadeGames(partida: Partida): number {
     return this.partidaService.quantidadeGames(partida);
   }
+
+  iniciarPartida(id: number){
+    this.partidaService.iniciarPartida(id);
+  }
 }
+

@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class DetalhesPartidaFormComponent implements OnInit {
   partida: Partida | undefined;
   ascending: Game[] = [];
+  partidaIniciada: boolean = false;
 
   constructor(
     private partidaService: PartidaService,
@@ -25,26 +26,30 @@ export class DetalhesPartidaFormComponent implements OnInit {
       .subscribe({
         next: (response: Partida | undefined) => {
           this.partida = response;
-//          this.partida?.games.sort((a, b) => Number(a.id) - Number(b.id));
+          //          this.partida?.games.sort((a, b) => Number(a.id) - Number(b.id));
+          if (this.partida?.partidaStatus == 'EmAndamento') {
+            this.partidaIniciada = true;
+          }
         },
         error: (error) => {
           console.log(error);
         },
       });
+    console.log(
+      'partidaStatus: ' +
+        this.partida?.partidaStatus +
+        ' partidaIniciada = ' +
+        this.partidaIniciada
+    );
   }
 
-/*   getJogador(adversario: number): string | undefined {
-    return this.partidaService.getJogador(this.partida, adversario);
-  } */
-
-  getJogadorA(){
+  /*   getJogadorA(){
     return this.partidaService.getJogadorA(this.partida!);
   }
 
   getJogadorB(){
     return this.partidaService.getJogadorB(this.partida!);
-  }
-
+  } */
 
   primeiroSacador(): string | undefined {
     return this.partidaService.primeiroSacador(this.partida);
@@ -56,5 +61,9 @@ export class DetalhesPartidaFormComponent implements OnInit {
 
   gameAtualIndice(): number {
     return this.partidaService.gameAtualIndice(this.partida);
+  }
+
+  iniciarPartida(id: number) {
+    this.partidaService.iniciarPartida(id);
   }
 }

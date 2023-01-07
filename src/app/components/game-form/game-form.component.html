@@ -1,0 +1,9 @@
+<div>{{ partida?.jogadorA?.nome }}</div>
+<div>{{ partida?.jogadorB?.nome }}</div>
+
+<input type="button" value="popular campos" (click)="onEditGameFormClicked()">
+<form #gameForm  = "ngForm" (ngSubmit)="updateGame(gameForm.value)">
+    <input type="number" name="pontosA" ngModel>
+    <input type="number" name="pontosB" ngModel>
+    <input type="submit" value="Pontuação">
+</form>

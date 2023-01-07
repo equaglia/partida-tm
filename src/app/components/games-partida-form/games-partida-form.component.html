@@ -9,14 +9,14 @@
             <tr>&nbsp;</tr> 
             <tr><th>{{ partida?.jogadorA?.nome }}</th></tr>
             <tr><th>{{ partida?.jogadorB?.nome }}</th></tr>
-            <!-- <tr> <th>{{ getJogadorA() }} </th></tr>
-            <tr> <th>{{ getJogadorB() }} </th></tr> -->
         </td>
         <td *ngFor="let gms of games">
             <tr class="apagar">{{gms.id}}</tr>
             <tr><th> {{gameOrdem(gms)}}</th></tr>
             <tr>{{gms.pontos[0].pontos}}</tr>
             <tr>{{gms.pontos[1].pontos}}</tr>
+            <tr> <button class="btn btn-primary" [routerLink]="['/game', partida?.id, gms.id]">
+              Pontos</button></tr>
         </td>
     </table>
   </div>
