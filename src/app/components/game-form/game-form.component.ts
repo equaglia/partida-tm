@@ -15,6 +15,7 @@ import { NgForm } from '@angular/forms';
 export class GameFormComponent implements OnInit {
   partida: Partida | undefined;
   game: Game | undefined;
+  pontuacao: Pontuacao[] = [];
   @ViewChild('gameForm') form!: NgForm;
 
   constructor(
@@ -29,9 +30,17 @@ export class GameFormComponent implements OnInit {
     this.getGame();
   }
 
-  getPontos(adversario: number) {
+  /*   getPontos(adversario: number) {
     return this.gameService.getPontos(this.game, adversario);
+  } 
+
+  getJogadorEPontos(adversario: number){
+    this.gameService.getJogadorEPontos(this.game, adversario);
   }
+
+  getJogador(adversario: number){
+    this.gameService.getJogador(this.game, adversario);
+  } */
 
   getPartida() {
     this.partidaService
@@ -59,14 +68,19 @@ export class GameFormComponent implements OnInit {
       });
   }
 
-onEditGameFormClicked(){
-  this.form.setValue({
-    pontosA: this.game?.pontos[0].pontos,
-    pontosB: this.game?.pontos[1].pontos,
-  });
-}
+  onEditGameFormClicked() {
+    this.form.setValue({
+      pontosA: this.game?.pontos[0].pontos,
+      pontosB: this.game?.pontos[1].pontos,
+    });
+  }
 
   updateGame(pontos: { pontosA: number; pontosB: number }) {
-    this.gameService.putGamePontos(this.game?.id!, pontos.pontosA, pontos.pontosB);
+    this.gameService.putGamePontos(
+      this.game?.id!,
+      pontos.pontosA,
+      pontos.pontosB
+    );
+    window.history.back();
   }
 }
