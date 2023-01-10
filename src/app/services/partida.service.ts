@@ -25,16 +25,16 @@ export class PartidaService {
       .pipe(map((partida) => partida.find((e) => e.id === id)));
   }
 
-/*   getJogador(partida: Partida | undefined, adversario: number) {
+  /*   getJogador(partida: Partida | undefined, adversario: number) {
     return partida?.jogadores[adversario].nome;
   } */
 
-  getJogadorA(partida: Partida){
-    console.log("partida.jogadorA.nome: "+partida.jogadorA.nome)
+  getJogadorA(partida: Partida) {
+    console.log('partida.jogadorA.nome: ' + partida.jogadorA.nome);
     return partida.jogadorA.nome;
   }
 
-  getJogadorB(partida: Partida){
+  getJogadorB(partida: Partida) {
     return partida.jogadorB.nome;
   }
 
@@ -42,17 +42,13 @@ export class PartidaService {
     return partida?.jogadorPrimeiroSacador.nome;
   }
 
-  createPartida(adversarios: FormGroup) {
-    console.log(adversarios.value);
+  createPartida(jg: FormGroup) {
+    console.log(jg.value);
     this.http
       .post<any>(
-        `${this.apiUrl}` +
-          '/' +
-          `${adversarios.controls['jogadorA'].value!}` +
-          '/' +
-          `${adversarios.controls['jogadorB'].value!}` +
-          '/' +
-          `${adversarios.controls['games'].value!}`,
+        `${this.apiUrl}/${jg.controls['jogadorA'].value!}/${jg.controls[
+          'jogadorB'
+        ].value!}/${jg.controls['games'].value!}`,
         {}
       )
       .pipe(
@@ -75,15 +71,15 @@ export class PartidaService {
     if (!(partida.fimPartida == undefined || partida.fimPartida == null)) {
       fim = new Date(partida.fimPartida).getTime();
     }
+    var horaMinuto = '';
     var ms = Math.abs(fim - inicio);
     var total_seconds = ms / 1000;
     var horas = Math.floor(total_seconds / 3600);
+    horaMinuto = `${horas.toString().padStart(2, '0')}`;
     var minutos = Math.floor((total_seconds - horas * 3600) / 60);
+    horaMinuto = `${horaMinuto}:${minutos.toString().padStart(2, '0')}`;
     var segundos = Math.floor(total_seconds - horas * 3600 - minutos * 60);
-    var horaMinuto =
-      horas.toString().padStart(2, '0') + ':' +
-      minutos.toString().padStart(2, '0') + ':' +
-      segundos.toString().padStart(2, '0');
+    horaMinuto = `${horaMinuto}:${segundos.toString().padStart(2, '0')}`;
     return horaMinuto;
   }
 
@@ -101,7 +97,8 @@ export class PartidaService {
   }
 
   iniciarPartida(id: number) {
-      this.http.put(`${this.apiUrl}` + '/' + `${id}` + '/iniciar', {})
+    this.http
+      .put(`${this.apiUrl}/${id}/iniciar`, {})
       .pipe(
         catchError((error: any, caught: Observable<any>): Observable<any> => {
           this.errorMessage = error.message;
@@ -111,6 +108,5 @@ export class PartidaService {
       )
       .subscribe();
     console.log('iniciou partida ');
-
   }
 }

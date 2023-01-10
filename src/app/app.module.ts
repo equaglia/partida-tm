@@ -17,6 +17,7 @@ import { PartidaNovaComponent } from './pages/partida-nova/partida-nova.componen
 import { DetalhesPartidaFormComponent } from './components/detalhes-partida-form/detalhes-partida-form.component';
 import { GamesPartidaFormComponent } from './components/games-partida-form/games-partida-form.component';
 import { GameFormComponent } from './components/game-form/game-form.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { GameFormComponent } from './components/game-form/game-form.component';
     PartidaNovaComponent,
     DetalhesPartidaFormComponent,
     GamesPartidaFormComponent,
-    GameFormComponent
+    GameFormComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { MessageService } from '../../services/message.service';
 import { Pontuacao } from './../../models/pontuacao';
 import { GameService } from './../../services/game.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -22,7 +23,8 @@ export class GameFormComponent implements OnInit {
     private gameService: GameService,
     private partidaService: PartidaService,
     private actRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private messagesService: MessageService
   ) {}
 
   ngOnInit(): void {
