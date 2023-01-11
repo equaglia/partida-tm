@@ -1,3 +1,5 @@
+import { StatusJogador } from './../models/enums/status-jogador';
+import { StatusPartida } from './../models/enums/status-partida';
 import { FormGroup } from '@angular/forms';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -108,5 +110,27 @@ export class PartidaService {
       )
       .subscribe();
     console.log('iniciou partida ');
+  }
+
+  jogadoresDisponiveis(statusA: string, statusB: string): boolean {
+    return (
+      statusA == StatusJogador.DISPONIVEL && statusB == StatusJogador.DISPONIVEL
+    );
+  }
+
+  partidaPreparada(ptd: Partida | undefined): boolean {
+    if (ptd == undefined) return false;
+    return ptd.partidaStatus == StatusPartida.PREPARADA &&
+      this.jogadoresDisponiveis(ptd.jogadorA.status, ptd.jogadorB.status)
+      ? true
+      : false;
+  }
+
+  partidaInterrompida(ptd: Partida | undefined): boolean {
+    if (ptd == undefined) return false;
+    return ptd.partidaStatus == StatusPartida.INTERROMPIDA &&
+      this.jogadoresDisponiveis(ptd.jogadorA.status, ptd.jogadorB.status)
+      ? true
+      : false;
   }
 }

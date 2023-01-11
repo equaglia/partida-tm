@@ -4,12 +4,17 @@
       <td>Partida ID:</td>
       <td>{{ partida?.id }}</td>
     </tr>
-    <tr>Duração: {{ duracao() }}</tr>
+    <tr>
+      Duração:
+      {{
+        duracao()
+      }}
+    </tr>
     <table>
       <tr>
         <td>{{ partida?.jogadorA?.nome }}</td>
         <td>{{ partida?.gamesVencidosA }}</td>
-        <td> X </td>
+        <td>X</td>
         <td>{{ partida?.gamesVencidosB }}</td>
         <td>{{ partida?.jogadorB?.nome }}</td>
       </tr>
@@ -19,11 +24,16 @@
       <td>Status: {{ partida?.partidaStatus }}</td>
     </tr>
     <td>
-      <button class="btn btn-secondary" (click)="iniciarPartida(partida?.id!)">
-        {{ partidaIniciada ? '' : 'iniciar' }}
-      </button>
+      <div *ngIf="partidaPreparada(partida) || partidaInterrompida(partida)">
+        <button
+          class="btn btn-secondary"
+          (click)="iniciarPartida(partida?.id!)"
+        >
+          {{ "iniciar" }}
+        </button>
+      </div>
     </td>
-<tr>
+    <tr>
       <td>Primeiro sacador: {{ primeiroSacador() }}</td>
       <td>Game atual: {{ gameAtualIndice() }}</td>
     </tr>

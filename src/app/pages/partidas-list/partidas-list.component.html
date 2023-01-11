@@ -14,19 +14,14 @@
           <td>X</td>
           <td>{{ ptd.gamesVencidosB }}</td>
           <td>{{ ptd.jogadorB.nome }}</td>
-          
-          <!-- <td>{{ ptd.partidaStatus }}</td> -->
           <td>{{ quantidadeGames(ptd) }}</td>
           <td>
-            <button class="btn btn-primary" [routerLink]="['/partida', ptd.id]">
-              {{ ptd.partidaStatus }}
-            </button>
+            <div *ngIf="partidaPreparada(ptd)">
+            </div>
+              <button class="btn btn-primary" [routerLink]="['/partida', ptd.id]">
+                {{ ptd.partidaStatus }}
+              </button>
           </td>
-<!--           <td>
-            <button class="btn btn-secondary" (click)="iniciarPartida(ptd.id)">
-              {{ ptd.partidaStatus }}
-            </button>
-          </td> -->
         </tr>
       </tbody>
     </table>

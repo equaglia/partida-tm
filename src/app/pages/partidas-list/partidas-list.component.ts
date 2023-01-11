@@ -1,3 +1,4 @@
+import { StatusPartida } from './../../models/enums/status-partida';
 import { PartidaService } from './../../services/partida.service';
 import { Partida } from './../../models/partida';
 import { Component, OnInit } from '@angular/core';
@@ -12,7 +13,7 @@ export class PartidasListComponent implements OnInit {
   lista: string = "Lista de partidas";
 
   constructor(private partidaService: PartidaService) {
-    this.getPartidas();
+    this.getPartidas(); 
    }
 
    getPartidas(): void {
@@ -28,6 +29,10 @@ export class PartidasListComponent implements OnInit {
 
   iniciarPartida(id: number){
     this.partidaService.iniciarPartida(id);
+  }
+
+  partidaPreparada(ptd: Partida): boolean {
+    return this.partidaService.partidaPreparada(ptd);
   }
 }
 
