@@ -16,11 +16,45 @@
           <td>{{ ptd.jogadorB.nome }}</td>
           <td>{{ quantidadeGames(ptd) }}</td>
           <td>
-            <div *ngIf="partidaPreparada(ptd)">
-            </div>
-              <button class="btn btn-primary" [routerLink]="['/partida', ptd.id]">
+            <!--             <div *ngIf="partidaPreparada(ptd)">
+            </div> -->
+            <!--               <button class="btn btn-primary" [routerLink]="['/partida', ptd.id]">
+                {{ ptd.partidaStatus }}
+              </button> -->
+            <div class="dropdown">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
                 {{ ptd.partidaStatus }}
               </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div *ngIf="!partidaCancelada(ptd)">
+                  <li><a class="dropdown-item" [routerLink]="['/partida', ptd.id]">Expandir</a></li>
+                </div>
+                <div *ngIf="partidaPreparadaEJogadoresDisponiveis(ptd)">
+                  <li><a class="dropdown-item" (click)="iniciarPartida(ptd.id)">Iniciar</a></li>
+                </div>
+                <div *ngIf="partidaInterrompidaEJogadoresDisponiveis(ptd)">
+                  <li><a class="dropdown-item" (click)="continuarPartidaInterrompida(ptd.id)">Continuar</a></li>
+                </div>
+                <div *ngIf="partidaEmAndamento(ptd)">
+                  <li><a class="dropdown-item" (click)="interromperPartida(ptd.id)">Interromper</a></li>
+                </div>
+                <div *ngIf="partidaPreparada(ptd)">
+                  <li><a class="dropdown-item" (click)="cancelarPartida(ptd.id)">Cancelar</a></li>
+                </div>
+                <div *ngIf="partidaEmAndamento(ptd)">
+                  <li><a class="dropdown-item" (click)="finalizarPartida(ptd.id)">Finalizar</a></li>
+                </div>
+                <div *ngIf="partidaCancelada(ptd)">
+                  <li><a class="dropdown-item" (click)="removerPartida(ptd.id)">Remover</a></li>
+                </div>
+              </ul>
+            </div>
           </td>
         </tr>
       </tbody>

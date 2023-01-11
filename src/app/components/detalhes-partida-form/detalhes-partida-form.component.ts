@@ -52,6 +52,9 @@ export class DetalhesPartidaFormComponent implements OnInit {
   iniciarPartida(id: number) {
     this.partidaService.iniciarPartida(id);
   }
+  continuarPartidaInterrompida(id: number): void {
+    this.partidaService.continuarPartidaInterrompida(id);
+  }
 
   partidaPreparada(ptd: Partida | undefined): boolean {
     return this.partidaService.partidaPreparada(ptd);
@@ -59,5 +62,11 @@ export class DetalhesPartidaFormComponent implements OnInit {
 
   partidaInterrompida(ptd: Partida | undefined): boolean {
     return this.partidaService.partidaInterrompida(ptd);
+  }
+  partidaPreparadaEJogadoresDisponiveis(ptd: Partida): boolean {
+    return this.partidaService.partidaPreparadaEJogadoresDisponiveis(ptd);
+  }
+  partidaInterrompidaEJogadoresDisponiveis(ptd: Partida): boolean {
+    return this.partidaService.partidaInterrompidaEJogadoresDisponiveis(ptd);
   }
 }

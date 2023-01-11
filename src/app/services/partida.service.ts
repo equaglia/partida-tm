@@ -21,10 +21,10 @@ export class PartidaService {
     return this.http.get<Partida[]>(this.apiUrl);
   }
 
-  retrieveById(id: number): Observable<Partida | undefined> {
+  retrieveById(ptdId: number): Observable<Partida | undefined> {
     return this.http
       .get<Partida[]>(this.apiUrl)
-      .pipe(map((partida) => partida.find((e) => e.id === id)));
+      .pipe(map((partida) => partida.find((e) => e.id === ptdId)));
   }
 
   /*   getJogador(partida: Partida | undefined, adversario: number) {
@@ -52,13 +52,6 @@ export class PartidaService {
           'jogadorB'
         ].value!}/${jg.controls['games'].value!}`,
         {}
-      )
-      .pipe(
-        catchError((error: any, caught: Observable<any>): Observable<any> => {
-          this.errorMessage = error.message;
-          console.error('There was an error!', error);
-          return of();
-        })
       )
       .subscribe();
     console.log('criou partida ');
@@ -98,39 +91,67 @@ export class PartidaService {
     return indice;
   }
 
-  iniciarPartida(id: number) {
-    this.http
-      .put(`${this.apiUrl}/${id}/iniciar`, {})
-      .pipe(
-        catchError((error: any, caught: Observable<any>): Observable<any> => {
-          this.errorMessage = error.message;
-          console.error('Error: ', error.message);
-          return of();
-        })
-      )
-      .subscribe();
-    console.log('iniciou partida ');
-  }
-
-  jogadoresDisponiveis(statusA: string, statusB: string): boolean {
+  jogadoresDisponiveis(ptd: Partida | undefined): boolean {
+    if (ptd == undefined) return false;
     return (
-      statusA == StatusJogador.DISPONIVEL && statusB == StatusJogador.DISPONIVEL
+      ptd.jogadorA.status == StatusJogador.DISPONIVEL &&
+      ptd.jogadorB.status == StatusJogador.DISPONIVEL
     );
   }
 
-  partidaPreparada(ptd: Partida | undefined): boolean {
-    if (ptd == undefined) return false;
-    return ptd.partidaStatus == StatusPartida.PREPARADA &&
-      this.jogadoresDisponiveis(ptd.jogadorA.status, ptd.jogadorB.status)
-      ? true
-      : false;
+  iniciarPartida(ptdId: number) {
+    this.http
+    .put(`${this.apiUrl}/${ptdId}/iniciar`, {})
+    .subscribe();
+    console.log('iniciou partida ');
+  }
+  iniciarProximoGame(ptdId: number): void {
+    this.http.put(`${this.apiUrl}/${ptdId}/continuar`, {}).subscribe();
+    console.log('continuando partida ');
+  }
+  interromperPartida(ptdId: number): void {
+    this.http.put(`${this.apiUrl}/${ptdId}/interromper`, {}).subscribe();
+    console.log('interrompeu partida ');
+  }
+  continuarPartidaInterrompida(ptdId: number): void {
+    this.http.put(`${this.apiUrl}/${ptdId}/retornar`, {}).subscribe();
+    console.log('retornou partida interrompida ');
+  }
+  finalizarPartida(ptdId: number): void {
+    this.http.put(`${this.apiUrl}/${ptdId}/completar`, {}).subscribe();
+    console.log('iniciou partida ');
+  }
+  cancelarPartida(ptdId: number): void {
+    this.http.put(`${this.apiUrl}/${ptdId}/cancelar`, {}).subscribe();
+    console.log('cancelou partida ');
+  }
+  removerPartida(ptdId: number) {
+    this.http.delete(`${this.apiUrl}/${ptdId}`, {}).subscribe();
+    console.log('removeu partida ');
   }
 
+  partidaInterrompidaEJogadoresDisponiveis(ptd: Partida | undefined): boolean {
+    if (ptd == undefined) return false;
+    return this.jogadoresDisponiveis(ptd) && this.partidaInterrompida(ptd);
+  }
+  partidaPreparadaEJogadoresDisponiveis(ptd: Partida | undefined): boolean {
+    if (ptd == undefined) return false;
+    return this.jogadoresDisponiveis(ptd) && this.partidaPreparada(ptd);
+  }
+  partidaPreparada(ptd: Partida | undefined): boolean {
+    if (ptd == undefined) return false;
+    return ptd.partidaStatus == StatusPartida.PREPARADA ? true : false;
+  }
+  partidaEmAndamento(ptd: Partida | undefined): boolean {
+    if (ptd == undefined) return false;
+    return ptd.partidaStatus == StatusPartida.EMANDAMENTO ? true : false;
+  }
   partidaInterrompida(ptd: Partida | undefined): boolean {
     if (ptd == undefined) return false;
-    return ptd.partidaStatus == StatusPartida.INTERROMPIDA &&
-      this.jogadoresDisponiveis(ptd.jogadorA.status, ptd.jogadorB.status)
-      ? true
-      : false;
+    return ptd.partidaStatus == StatusPartida.INTERROMPIDA ? true : false;
+  }
+  partidaCancelada(ptd: Partida | undefined): boolean {
+    if (ptd == undefined) return false;
+    return ptd.partidaStatus == StatusPartida.CANCELADA ? true : false;
   }
 }

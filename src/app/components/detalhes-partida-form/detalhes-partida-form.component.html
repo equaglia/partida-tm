@@ -24,12 +24,20 @@
       <td>Status: {{ partida?.partidaStatus }}</td>
     </tr>
     <td>
-      <div *ngIf="partidaPreparada(partida) || partidaInterrompida(partida)">
+      <div *ngIf="partidaPreparadaEJogadoresDisponiveis(partida!)">
         <button
           class="btn btn-secondary"
           (click)="iniciarPartida(partida?.id!)"
         >
-          {{ "iniciar" }}
+          Iniciar
+        </button>
+      </div>
+      <div *ngIf="partidaInterrompidaEJogadoresDisponiveis(partida!)">
+        <button
+          class="btn btn-secondary"
+          (click)="continuarPartidaInterrompida(partida?.id!)"
+        >
+          Continuar
         </button>
       </div>
     </td>
