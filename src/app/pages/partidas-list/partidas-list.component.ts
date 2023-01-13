@@ -10,6 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class PartidasListComponent implements OnInit {
   partidas: Partida[] = [];
   lista: string = 'Lista de partidas';
+  statuscolor: string = 'btn-info';
+//  statuscolor: string = 'btn-success';
 
   constructor(private partidaService: PartidaService) {
     this.getPartidas();
@@ -21,6 +23,11 @@ export class PartidasListComponent implements OnInit {
       .subscribe((partidas) => (this.partidas = partidas));
   }
   ngOnInit(): void {}
+
+  statusPartidaColor(ptd: Partida | undefined): string {
+    return this.partidaService.statusPartidaColor(ptd);
+  }
+
   quantidadeGames(partida: Partida): number {
     return this.partidaService.quantidadeGames(partida);
   }

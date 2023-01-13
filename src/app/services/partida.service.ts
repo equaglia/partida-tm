@@ -1,5 +1,8 @@
 import { StatusJogador } from './../models/enums/status-jogador';
-import { StatusPartida } from './../models/enums/status-partida';
+import {
+  StatusPartida,
+  StatusPartidaColor,
+} from './../models/enums/status-partida';
 import { FormGroup } from '@angular/forms';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -99,10 +102,34 @@ export class PartidaService {
     );
   }
 
+  statusPartidaColor(ptd: Partida | undefined): string {
+    let cor = StatusPartidaColor.Cancelada;
+    if (ptd != undefined) {
+      switch (ptd.partidaStatus) {
+        case StatusPartida.CANCELADA:
+          cor = StatusPartidaColor.Cancelada;
+          break;
+        case StatusPartida.EMANDAMENTO:
+          cor = StatusPartidaColor.EmAndamento;
+          break;
+        case StatusPartida.FINALIZADA:
+          cor = StatusPartidaColor.Finalizada;
+          break;
+        case StatusPartida.INTERROMPIDA:
+          cor = StatusPartidaColor.Interrompida;
+          break;
+        case StatusPartida.PREPARADA:
+          cor = StatusPartidaColor.Preparada;
+          break;
+        default:
+          cor = StatusPartidaColor.Cancelada;
+      }
+    }
+    return cor;
+  }
+
   iniciarPartida(ptdId: number) {
-    this.http
-    .put(`${this.apiUrl}/${ptdId}/iniciar`, {})
-    .subscribe();
+    this.http.put(`${this.apiUrl}/${ptdId}/iniciar`, {}).subscribe();
     console.log('iniciou partida ');
   }
   iniciarProximoGame(ptdId: number): void {

@@ -16,3 +16,12 @@ export const StatusPartidaMapping: Record<StatusPartida, string> = {
     [StatusPartida.PREPARADA]: "Partida preparada",
 };
 
+export const StatusPartidaColor: Record<StatusPartida, string> = {
+    [StatusPartida.CANCELADA]: "btn-dark",
+    [StatusPartida.EMANDAMENTO]: "btn-success",
+    [StatusPartida.FINALIZADA]: "btn-light",
+    [StatusPartida.INTERROMPIDA]: "btn-danger",
+    [StatusPartida.PREPARADA]: "btn-primary",
+};
+
+
