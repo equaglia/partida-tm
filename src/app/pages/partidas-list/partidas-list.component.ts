@@ -1,3 +1,4 @@
+import { StatusJogador } from './../../models/enums/status-jogador';
 import { PartidaService } from './../../services/partida.service';
 import { Partida } from './../../models/partida';
 import { Component, OnInit } from '@angular/core';
@@ -10,8 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class PartidasListComponent implements OnInit {
   partidas: Partida[] = [];
   lista: string = 'Lista de partidas';
-  statuscolor: string = 'btn-info';
-//  statuscolor: string = 'btn-success';
+  //  colorFlag: string = StatusJogador.NAODISPONIVEL;
 
   constructor(private partidaService: PartidaService) {
     this.getPartidas();
@@ -26,6 +26,10 @@ export class PartidasListComponent implements OnInit {
 
   statusPartidaColor(ptd: Partida | undefined): string {
     return this.partidaService.statusPartidaColor(ptd);
+  }
+
+  statusJogadorColor(status: string): string {
+    return this.partidaService.statusJogadorColor(status);
   }
 
   quantidadeGames(partida: Partida): number {
@@ -68,6 +72,6 @@ export class PartidasListComponent implements OnInit {
     return this.partidaService.partidaCancelada(ptd);
   }
   jogadoresDisponiveis(ptd: Partida): boolean {
-    return  this.partidaService.jogadoresDisponiveis(ptd);
+    return this.partidaService.jogadoresDisponiveis(ptd);
   }
 }

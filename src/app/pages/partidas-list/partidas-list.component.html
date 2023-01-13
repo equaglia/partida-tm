@@ -9,11 +9,11 @@
       <tbody>
         <tr *ngFor="let ptd of partidas">
           <td>{{ ptd.id }}</td>
-          <td>{{ ptd.jogadorA.nome }}</td>
+          <td [ngStyle]="{ color: statusJogadorColor(ptd.jogadorA.status) }">{{ ptd.jogadorA.nome }}</td>
           <td>{{ ptd.gamesVencidosA }}</td>
           <td>X</td>
           <td>{{ ptd.gamesVencidosB }}</td>
-          <td>{{ ptd.jogadorB.nome }}</td>
+          <td [ngStyle]="{ color: statusJogadorColor(ptd.jogadorB.status) }">{{ ptd.jogadorB.nome }}</td>
           <td>{{ quantidadeGames(ptd) }}</td>
           <td>
             <div class="dropdown">

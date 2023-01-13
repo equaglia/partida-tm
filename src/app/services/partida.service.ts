@@ -102,6 +102,10 @@ export class PartidaService {
     );
   }
 
+  statusJogadorColor(status: string): string {
+    return status == StatusJogador.DISPONIVEL ? 'black' : 'red';
+  }
+
   statusPartidaColor(ptd: Partida | undefined): string {
     let cor = StatusPartidaColor.Cancelada;
     if (ptd != undefined) {
