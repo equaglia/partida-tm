@@ -1,6 +1,16 @@
-import { PartidaService } from './../../services/partida.service';
+import { Router } from '@angular/router';
+import { Jogador } from 'src/app/models/jogador';
+import { JogadorService } from 'src/app/services/jogador.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
-import { Component, OnInit, Output, EventEmitter, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Output,
+  EventEmitter,
+  Input,
+  ViewChild,
+  ElementRef,
+} from '@angular/core';
 
 @Component({
   selector: 'app-partida-form',
@@ -12,14 +22,19 @@ export class PartidaFormComponent implements OnInit {
   @Input() btnText!: string;
   adversariosForm!: FormGroup;
   quantidadeGames = [1, 3, 5, 7, 9];
+  jogadores: Jogador[] = [];
 
   @ViewChild('teams') teams!: ElementRef;
-	selectedGames = '';
-	onSelected():void {
-		this.selectedGames = this.teams.nativeElement.value;
-	}
+  selectedGames = '';
+  onSelected(): void {
+    this.selectedGames = this.teams.nativeElement.value;
+  }
 
-  constructor(private partidaService: PartidaService) {}
+  constructor(
+    private jogadorService: JogadorService, private router: Router
+  ) {
+    this.getJogadores();
+  }
 
   ngOnInit(): void {
     this.adversariosForm = new FormGroup({
@@ -28,6 +43,12 @@ export class PartidaFormComponent implements OnInit {
       games: new FormControl('', [Validators.required]),
     });
     this.adversariosForm.controls['games'].setValue(5);
+  }
+
+  getJogadores(): void {
+    this.jogadorService
+      .getAll()
+      .subscribe((jogadores) => (this.jogadores = jogadores));
   }
 
   get jogadorA() {
@@ -47,5 +68,6 @@ export class PartidaFormComponent implements OnInit {
       return;
     }
     this.onSubmit.emit(this.adversariosForm);
+    this.router.navigate(['partidas']);
   }
 }

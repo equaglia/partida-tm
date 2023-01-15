@@ -1,4 +1,4 @@
-import { StatusJogador } from './../../models/enums/status-jogador';
+import { Router } from '@angular/router';
 import { PartidaService } from './../../services/partida.service';
 import { Partida } from './../../models/partida';
 import { Component, OnInit } from '@angular/core';
@@ -9,12 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./partidas-list.component.css'],
 })
 export class PartidasListComponent implements OnInit {
-  partidas: Partida[] = [];
+//  export class PartidasListComponent implements OnInit, OnDestroy {
+    partidas: Partida[] = [];
   lista: string = 'Lista de partidas';
-  //  colorFlag: string = StatusJogador.NAODISPONIVEL;
+  someSubscription: any;
 
-  constructor(private partidaService: PartidaService) {
+  constructor(private partidaService: PartidaService, private router: Router) {
     this.getPartidas();
+/*     this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
+    this.someSubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        // Here is the dashing line comes in the picture.
+        // You need to tell the router that, you didn't visit or load the page previously, so mark the navigated flag to false as below.
+        this.router.navigated = false;
+      }
+    }); */
   }
 
   getPartidas(): void {
@@ -24,6 +35,12 @@ export class PartidasListComponent implements OnInit {
   }
   ngOnInit(): void {}
 
+/*   ngOnDestroy() {
+    if (this.someSubscription) {
+      this.someSubscription.unsubscribe();
+    }
+  }
+ */
   statusPartidaColor(ptd: Partida | undefined): string {
     return this.partidaService.statusPartidaColor(ptd);
   }

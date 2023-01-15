@@ -134,30 +134,37 @@ export class PartidaService {
 
   iniciarPartida(ptdId: number) {
     this.http.put(`${this.apiUrl}/${ptdId}/iniciar`, {}).subscribe();
+    document.location.reload();
     console.log('iniciou partida ');
   }
   iniciarProximoGame(ptdId: number): void {
     this.http.put(`${this.apiUrl}/${ptdId}/continuar`, {}).subscribe();
+    document.location.reload();
     console.log('continuando partida ');
   }
   interromperPartida(ptdId: number): void {
     this.http.put(`${this.apiUrl}/${ptdId}/interromper`, {}).subscribe();
+    document.location.reload();
     console.log('interrompeu partida ');
   }
   continuarPartidaInterrompida(ptdId: number): void {
     this.http.put(`${this.apiUrl}/${ptdId}/retornar`, {}).subscribe();
+    document.location.reload();
     console.log('retornou partida interrompida ');
   }
   finalizarPartida(ptdId: number): void {
     this.http.put(`${this.apiUrl}/${ptdId}/completar`, {}).subscribe();
+    document.location.reload();
     console.log('iniciou partida ');
   }
   cancelarPartida(ptdId: number): void {
     this.http.put(`${this.apiUrl}/${ptdId}/cancelar`, {}).subscribe();
+    document.location.reload();
     console.log('cancelou partida ');
   }
   removerPartida(ptdId: number) {
     this.http.delete(`${this.apiUrl}/${ptdId}`, {}).subscribe();
+    document.location.reload();
     console.log('removeu partida ');
   }
 

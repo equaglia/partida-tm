@@ -1,24 +1,29 @@
 <form (ngSubmit)="submit()" [formGroup]="adversariosForm" #formDir="ngForm">
   <div class="form-group">
     <label for="jogadorA">Jogador A</label>
-    <input
-      type="number"
-      placeholder="escolha o jogador A"
-      formControlName="jogadorA"
-      required
-    />
+    <select
+    type="number"
+    placeholder="escolha o jogador A"
+    formControlName="jogadorA"
+    required>
+      <option [ngValue]="null" disabled>Select Jogador</option>
+      <option *ngFor="let jgdr of jogadores" [ngValue]="jgdr.id">{{jgdr.nome}}</option>
+    </select>
+    
     <div *ngIf="jogadorA.invalid && formDir.submitted" class="validation-error">
       <p *ngIf="jogadorA.errors?.['required']">O jogadorA é obrigatório</p>
     </div>
   </div>
   <div class="form-group">
     <label for="jogadorB">Jogador B</label>
-    <input
-      type="number"
-      placeholder="escolha o jogador B"
-      formControlName="jogadorB"
-      required
-    />
+    <select
+    type="number"
+    placeholder="escolha o jogador B"
+    formControlName="jogadorB"
+    required>
+      <option [ngValue]="null" disabled>Select Jogador</option>
+      <option *ngFor="let jgdr of jogadores" [ngValue]="jgdr.id">{{jgdr.nome}}</option>
+    </select>
     <div *ngIf="jogadorB.invalid && formDir.submitted" class="validation-error">
       <p *ngIf="jogadorB.errors?.['required']">O jogadorB é obrigatório</p>
     </div>
@@ -26,10 +31,7 @@
   <div class="form-group">
     <label for="games">Quantidade de Games</label>
     <select formControlName="games">
-      <option
-        *ngFor="let item of quantidadeGames"
-        [value]="item"
-      >
+      <option *ngFor="let item of quantidadeGames" [value]="item">
         {{ item }}
       </option>
     </select>
