@@ -17,36 +17,41 @@ export class PartidaService {
   private baseApiUrl = environment.baseApiUrl;
   private apiUrl = `${this.baseApiUrl}partidas`; /* 'http://localhost:8080/partidas'; */
   errorMessage: any;
-
+  
   constructor(private http: HttpClient) {}
-
+  
   getAll(): Observable<Partida[]> {
     return this.http.get<Partida[]>(this.apiUrl);
   }
-
+  
   retrieveById(ptdId: number): Observable<Partida | undefined> {
     return this.http
-      .get<Partida[]>(this.apiUrl)
-      .pipe(map((partida) => partida.find((e) => e.id === ptdId)));
+    .get<Partida[]>(this.apiUrl)
+    .pipe(map((partida) => partida.find((e) => e.id === ptdId)));
   }
-
+  
   /*   getJogador(partida: Partida | undefined, adversario: number) {
     return partida?.jogadores[adversario].nome;
   } */
-
+  
   getJogadorA(partida: Partida) {
     console.log('partida.jogadorA.nome: ' + partida.jogadorA.nome);
     return partida.jogadorA.nome;
   }
-
+  
   getJogadorB(partida: Partida) {
     return partida.jogadorB.nome;
   }
-
+  
   primeiroSacador(partida: Partida | undefined): string | undefined {
     return partida?.jogadorPrimeiroSacador.nome;
   }
-
+  
+  getGameEmAndamento(partida: Partida | undefined): number {
+    if (partida == undefined) return -1;
+    return partida.games[partida.gameAtualIndice].id;
+  }
+  
   createPartida(jg: FormGroup) {
     console.log(jg.value);
     this.http
@@ -149,6 +154,7 @@ export class PartidaService {
   }
   continuarPartidaInterrompida(ptdId: number): void {
     this.http.put(`${this.apiUrl}/${ptdId}/retornar`, {}).subscribe();
+    this.iniciarProximoGame(ptdId);
     document.location.reload();
     console.log('retornou partida interrompida ');
   }

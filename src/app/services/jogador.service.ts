@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Jogador } from './../models/jogador';
 import { catchError, Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';

@@ -1,4 +1,3 @@
-import { StatusPartida } from './../../models/enums/status-partida';
 import { Game } from './../../models/game';
 import { Partida } from './../../models/partida';
 import { PartidaService } from './../../services/partida.service';

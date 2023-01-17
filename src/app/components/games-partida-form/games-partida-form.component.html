@@ -15,9 +15,12 @@
             <tr><th> {{gameOrdem(gms)}}</th></tr>
             <tr>{{gms.pontos[0].pontos}}</tr>
             <tr>{{gms.pontos[1].pontos}}</tr>
-            <tr> <button class="btn btn-primary" [routerLink]="['/game', partida?.id, gms.id]">
-              Pontos</button></tr>
         </td>
-    </table>
+      </table>
+      <div *ngIf="partidaEmAndamento(partida)">
+
+        <button class="btn btn-primary" [routerLink]="['/game', partida?.id, getGameEmAndamento()]">
+          Pontos</button>
+        </div>
   </div>
 </div>

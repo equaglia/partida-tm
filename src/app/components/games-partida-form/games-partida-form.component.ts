@@ -12,9 +12,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./games-partida-form.component.css'],
 })
 export class GamesPartidaFormComponent implements OnInit {
-  partida: Partida|undefined;
-  pontos: Pontuacao[]=[];
-  games: Game[]|undefined; 
+  partida: Partida | undefined;
+  pontos: Pontuacao[] = [];
+  games: Game[] | undefined;
   /* [{ 
     id: 0,
     pontos: this.pontos,
@@ -44,21 +44,27 @@ export class GamesPartidaFormComponent implements OnInit {
       });
   }
 
-/*   getJogador(adversario: number): string | undefined {
-    return this.partidaService.getJogador(this.partida, adversario);
-  }
- */
-  getJogadorA(){
+  /*   getJogador(adversario: number): string | undefined {
+        return this.partidaService.getJogador(this.partida, adversario);
+      }
+      */
+  getJogadorA() {
     return this.partidaService.getJogadorA(this.partida!);
   }
 
-  getJogadorB(){
+  getJogadorB() {
     return this.partidaService.getJogadorB(this.partida!);
   }
 
+  getGameEmAndamento(): number {
+    return this.partidaService.getGameEmAndamento(this.partida!);
+  }
 
-
-  gameOrdem(game: Game|undefined): number{
+  gameOrdem(game: Game | undefined): number {
     return this.games!.indexOf(game!) + 1;
+  }
+
+  partidaEmAndamento(partida: Partida | undefined): any {
+    return this.partidaService.partidaEmAndamento(partida); 
   }
 }
