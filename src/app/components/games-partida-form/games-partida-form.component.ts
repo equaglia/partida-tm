@@ -15,6 +15,7 @@ export class GamesPartidaFormComponent implements OnInit {
   partida: Partida | undefined;
   pontos: Pontuacao[] = [];
   games: Game[] | undefined;
+  id: number=0;
   /* [{ 
     id: 0,
     pontos: this.pontos,
@@ -44,10 +45,30 @@ export class GamesPartidaFormComponent implements OnInit {
       });
   }
 
-  /*   getJogador(adversario: number): string | undefined {
-        return this.partidaService.getJogador(this.partida, adversario);
-      }
-      */
+
+  renderizar(){
+    this.partidaService
+    .retrieveById(Number(this.id))
+    .subscribe({
+      next: (response: Partida | undefined) => {
+        this.partida = response;
+        this.partida?.games.sort((a, b) => Number(a.id) - Number(b.id));
+        this.games = response?.games;
+      },
+    error: (error) => {
+        console.log(error);
+      },
+    });
+  
+  }
+  
+  getId(pId: number): void{
+    this.id = pId;
+//    console.log('getId id = '+this.id);
+    this.renderizar();
+  }
+  
+
   getJogadorA() {
     return this.partidaService.getJogadorA(this.partida!);
   }

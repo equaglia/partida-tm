@@ -30,10 +30,6 @@ export class PartidaService {
     .pipe(map((partida) => partida.find((e) => e.id === ptdId)));
   }
   
-  /*   getJogador(partida: Partida | undefined, adversario: number) {
-    return partida?.jogadores[adversario].nome;
-  } */
-  
   getJogadorA(partida: Partida) {
     console.log('partida.jogadorA.nome: ' + partida.jogadorA.nome);
     return partida.jogadorA.nome;

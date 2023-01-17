@@ -9,7 +9,6 @@ import { JogadorService } from 'src/app/services/jogador.service';
 })
 export class JogadoresListComponent implements OnInit {
   jogadores: Jogador[] = [];
-
   lista: string = "Lista de Jogadores";
   
   constructor( private jogadorService: JogadorService) {
@@ -21,7 +20,5 @@ export class JogadoresListComponent implements OnInit {
     (this.jogadores = jogadores));
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {} 
 }

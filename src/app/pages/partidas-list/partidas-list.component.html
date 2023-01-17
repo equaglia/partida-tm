@@ -8,49 +8,145 @@
       <thead></thead>
       <tbody>
         <tr *ngFor="let ptd of partidas">
-          <td>{{ ptd.id }}</td>
-          <td [ngStyle]="{ color: statusJogadorColor(ptd.jogadorA.status) }">{{ ptd.jogadorA.nome }}</td>
-          <td>{{ ptd.gamesVencidosA }}</td>
-          <td>X</td>
-          <td>{{ ptd.gamesVencidosB }}</td>
-          <td [ngStyle]="{ color: statusJogadorColor(ptd.jogadorB.status) }">{{ ptd.jogadorB.nome }}</td>
-          <td>{{ quantidadeGames(ptd) }}</td>
-          <td>
-            <div class="dropdown">
-              <button
-                class="btn btn-primary {{ statusPartidaColor(ptd) }} dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                {{ ptd.partidaStatus }}
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <div *ngIf="!partidaCancelada(ptd)">
-                  <li><a class="dropdown-item" [routerLink]="['/partida', ptd.id]">Expandir</a></li>
-                </div>
-                <div *ngIf="partidaPreparadaEJogadoresDisponiveis(ptd)">
-                  <li><a class="dropdown-item" (click)="iniciarPartida(ptd.id)">Iniciar</a></li>
-                </div>
-                <div *ngIf="partidaInterrompidaEJogadoresDisponiveis(ptd)">
-                  <li><a class="dropdown-item" (click)="continuarPartidaInterrompida(ptd.id)">Continuar</a></li>
-                </div>
-                <div *ngIf="partidaEmAndamento(ptd)">
-                  <li><a class="dropdown-item" (click)="interromperPartida(ptd.id)">Interromper</a></li>
-                </div>
-                <div *ngIf="partidaPreparada(ptd)">
-                  <li><a class="dropdown-item" (click)="cancelarPartida(ptd.id)">Cancelar</a></li>
-                </div>
-                <div *ngIf="partidaEmAndamento(ptd)">
-                  <li><a class="dropdown-item" (click)="finalizarPartida(ptd.id)">Finalizar</a></li>
-                </div>
-                <div *ngIf="partidaCancelada(ptd)">
-                  <li><a class="dropdown-item" (click)="removerPartida(ptd.id)">Remover</a></li>
-                </div>
-              </ul>
+          <div class="accordion" id="accordionPartidas">
+            <div class="accordion-item">
+              <h2 class="accordion-header" [attr.id]="'heading' + ptd.id">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#collapse' + ptd.id"
+                  aria-expanded="false"
+                  [attr.aria-controls]="'collapse' + ptd.id"
+                  (click)="filho.getId(ptd.id)"
+                >
+                  <div>
+                    <td>{{ ptd.id }}</td>
+                    <td
+                      [ngStyle]="{
+                        color: statusJogadorColor(ptd.jogadorA.status)
+                      }"
+                    >
+                      {{ ptd.jogadorA.nome }}
+                    </td>
+                    <td>{{ ptd.gamesVencidosA }}</td>
+                    <td>X</td>
+                    <td>{{ ptd.gamesVencidosB }}</td>
+                    <td
+                      [ngStyle]="{
+                        color: statusJogadorColor(ptd.jogadorB.status)
+                      }"
+                    >
+                      {{ ptd.jogadorB.nome }}
+                    </td>
+                    <td>{{ quantidadeGames(ptd) }}</td>
+                    <td>{{ ptd.partidaStatus }}</td>
+                    <!--                     <td [ngStyle]="{
+                      color: statusPartidaColor(ptd)
+                    }">{{ ptd.partidaStatus }}</td> -->
+                  </div>
+                </button>
+              </h2>
             </div>
-          </td>
+            <div
+              [attr.id]="'collapse' + ptd.id"
+              class="accordion-collapse collapse"
+              [attr.aria-labelledby]="'heading' + ptd.id"
+              data-mdb-parent="#accordionPartidas"
+            >
+              <div class="accordion-body">
+                <td>
+                  <app-games-partida-form #filho></app-games-partida-form>
+                  <div class="dropdown">
+                    <button
+                      class="btn btn-primary {{
+                        statusPartidaColor(ptd)
+                      }} dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      {{ ptd.partidaStatus }}
+                    </button>
+                    <!--                     <a class="dropdown-item" [routerLink]="['/partida', ptd.id]"
+                  >Expandir</a
+                  > -->
+                    <ul
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+                      <!-- <div *ngIf="!partidaCancelada(ptd)">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            [routerLink]="['/partida', ptd.id]"
+                            >Expandir</a
+                          >
+                        </li>
+                      </div> -->
+                      <div *ngIf="partidaPreparadaEJogadoresDisponiveis(ptd)">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="iniciarPartida(ptd.id)"
+                            >Iniciar</a
+                          >
+                        </li>
+                      </div>
+                      <div
+                        *ngIf="partidaInterrompidaEJogadoresDisponiveis(ptd)"
+                      >
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="continuarPartidaInterrompida(ptd.id)"
+                            >Continuar</a
+                          >
+                        </li>
+                      </div>
+                      <div *ngIf="partidaEmAndamento(ptd)">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="interromperPartida(ptd.id)"
+                            >Interromper</a
+                          >
+                        </li>
+                      </div>
+                      <div *ngIf="partidaPreparada(ptd)">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="cancelarPartida(ptd.id)"
+                            >Cancelar</a
+                          >
+                        </li>
+                      </div>
+                      <div *ngIf="partidaEmAndamento(ptd)">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="finalizarPartida(ptd.id)"
+                            >Finalizar</a
+                          >
+                        </li>
+                      </div>
+                      <div *ngIf="partidaCancelada(ptd)">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="removerPartida(ptd.id)"
+                            >Remover</a
+                          >
+                        </li>
+                      </div>
+                    </ul>
+                  </div>
+                </td>
+              </div>
+            </div>
+          </div>
         </tr>
       </tbody>
     </table>

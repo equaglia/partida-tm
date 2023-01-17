@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-detalhes-partida-form',
   templateUrl: './detalhes-partida-form.component.html',
   styleUrls: ['./detalhes-partida-form.component.css'],
-})
+}) 
 export class DetalhesPartidaFormComponent implements OnInit {
   partida: Partida | undefined;
   ascending: Game[] = [];
@@ -22,12 +22,11 @@ export class DetalhesPartidaFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.partidaService
-      .retrieveById(Number(this.actRoute.snapshot.paramMap.get('id')))
+        .retrieveById(Number(this.actRoute.snapshot.paramMap.get('id')))
       .subscribe({
         next: (response: Partida | undefined) => {
           this.partida = response;
           this.statusPartida = this.partida?.partidaStatus == undefined ? '' : this.partida.partidaStatus;
-          //          this.partida?.games.sort((a, b) => Number(a.id) - Number(b.id));
         },
         error: (error) => {
           console.log(error);
