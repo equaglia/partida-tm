@@ -1,3 +1,4 @@
+import { JogadorRoutingModule } from './jogador-routing.module';
 import { RouterModule } from '@angular/router';
 import { JogadorFormComponent } from './jogador-form/jogador-form.component';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     FormsModule, 
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    JogadorRoutingModule
   ]
 })
 export class JogadorModule { }
