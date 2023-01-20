@@ -9,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./partidas-list.component.css'],
 })
 export class PartidasListComponent implements OnInit {
-//  export class PartidasListComponent implements OnInit, OnDestroy {
+  //  export class PartidasListComponent implements OnInit, OnDestroy {
     partidas: Partida[] = [];
-  lista: string = 'Lista de partidas';
-  someSubscription: any;
+    lista: string = 'Lista de partidas';
+    //someSubscription: any;
+   /*  refr:  boolean = false;
+    refre: number =0; */
 
   constructor(private partidaService: PartidaService, private router: Router) {
     this.getPartidas();
@@ -27,7 +29,7 @@ export class PartidasListComponent implements OnInit {
       }
     }); */
   }
-
+  
   getPartidas(): void {
     this.partidaService
       .getAll()
@@ -41,6 +43,19 @@ export class PartidasListComponent implements OnInit {
     }
   }
  */
+/* refreshPage(): boolean {
+  //this.refre = this.refre == 0 ? 1 : 0;
+  if (this.refre == 1) return true;
+  return false;
+} */
+
+/* setRefreshPageTrue(): void {
+  this.refr = true;
+}
+ */
+
+
+
   statusPartidaColor(ptd: Partida | undefined): string {
     return this.partidaService.statusPartidaColor(ptd);
   }

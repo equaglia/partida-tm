@@ -1,0 +1,25 @@
+#divPrincipal{
+    background: blue;
+    color: white;
+    padding: 20px;
+    margin: 20px;
+    font-family: Verdana;
+    font-size: 1.2em;
+    width: 300px;
+}
+
+#carregarConteudo{
+    background: green;
+    color: white;
+    padding: 20px;
+}
+
+#divConteudo{
+    background: red;
+    color: white;
+    padding: 20px;
+    margin: 20px;
+    font-family: Verdana;
+    font-size: 1.2em;
+    width: 300px;
+}

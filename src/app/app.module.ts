@@ -18,6 +18,7 @@ import { DetalhesPartidaFormComponent } from './components/detalhes-partida-form
 import { GamesPartidaFormComponent } from './components/games-partida-form/games-partida-form.component';
 import { GameFormComponent } from './components/game-form/game-form.component';
 import { MessagesComponent } from './components/messages/messages.component';
+import { DivApareceComponent } from './temporario/div-aparece/div-aparece.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MessagesComponent } from './components/messages/messages.component';
     DetalhesPartidaFormComponent,
     GamesPartidaFormComponent,
     GameFormComponent,
-    MessagesComponent
+    MessagesComponent,
+    DivApareceComponent
   ],
   imports: [
     BrowserModule,

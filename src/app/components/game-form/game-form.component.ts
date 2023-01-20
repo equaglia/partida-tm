@@ -30,18 +30,6 @@ export class GameFormComponent implements OnInit {
     this.getGame();
   }
 
-  /*   getPontos(adversario: number) {
-    return this.gameService.getPontos(this.game, adversario);
-  } 
-
-  getJogadorEPontos(adversario: number){
-    this.gameService.getJogadorEPontos(this.game, adversario);
-  }
-
-  getJogador(adversario: number){
-    this.gameService.getJogador(this.game, adversario);
-  } */
-
   getPartida() {
     this.partidaService
       .retrieveById(Number(this.actRoute.snapshot.paramMap.get('partidaId')))
@@ -81,6 +69,8 @@ export class GameFormComponent implements OnInit {
       pontos.pontosA,
       pontos.pontosB
     );
-    window.history.back();
+    this.router.navigate(['/partidas']);
+   // this.router.
+    //window.history.back();
   }
 }
