@@ -7,11 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/base/header/header.component';
-import { JogadoresListComponent } from './components/jogador/pages/jogadores-list/jogadores-list.component';
+import { JogadorModule } from './components/jogador/jogador.module';
 import { PartidasListComponent } from './components/partida/pages/partidas-list/partidas-list.component';
 import { FooterComponent } from './components/base/footer/footer.component';
-import { JogadorNovoComponent } from './components/jogador/pages/jogador-novo/jogador-novo.component';
-import { JogadorFormComponent } from './components/jogador/jogador-form/jogador-form.component';
 import { PartidaFormComponent } from './components/partida/partida-form/partida-form.component';
 import { PartidaNovaComponent } from './components/partida/pages/partida-nova/partida-nova.component';
 import { DetalhesPartidaFormComponent } from './components/partida/detalhes-partida-form/detalhes-partida-form.component';
@@ -24,11 +22,8 @@ import { DivApareceComponent } from './temporario/div-aparece/div-aparece.compon
   declarations: [
     AppComponent,
     HeaderComponent,
-    JogadoresListComponent,
     PartidasListComponent,
     FooterComponent,
-    JogadorNovoComponent,
-    JogadorFormComponent,
     PartidaFormComponent,
     PartidaNovaComponent,
     DetalhesPartidaFormComponent,
@@ -42,7 +37,8 @@ import { DivApareceComponent } from './temporario/div-aparece/div-aparece.compon
     AppRoutingModule,
     HttpClientModule, 
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JogadorModule
   ],
   providers: [
     {
