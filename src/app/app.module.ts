@@ -1,3 +1,4 @@
+import { PartidaModule } from './components/partida/partida.module';
 import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,13 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/base/header/header.component';
 import { JogadorModule } from './components/jogador/jogador.module';
-import { PartidasListComponent } from './components/partida/pages/partidas-list/partidas-list.component';
 import { FooterComponent } from './components/base/footer/footer.component';
-import { PartidaFormComponent } from './components/partida/partida-form/partida-form.component';
-import { PartidaNovaComponent } from './components/partida/pages/partida-nova/partida-nova.component';
-import { DetalhesPartidaFormComponent } from './components/partida/detalhes-partida-form/detalhes-partida-form.component';
-import { GamesPartidaFormComponent } from './components/partida/game/games-partida-form/games-partida-form.component';
-import { GameFormComponent } from './components/partida/game/game-form/game-form.component';
 import { MessagesComponent } from './components/base/messages/messages.component';
 import { DivApareceComponent } from './temporario/div-aparece/div-aparece.component';
 
@@ -22,13 +17,7 @@ import { DivApareceComponent } from './temporario/div-aparece/div-aparece.compon
   declarations: [
     AppComponent,
     HeaderComponent,
-    PartidasListComponent,
     FooterComponent,
-    PartidaFormComponent,
-    PartidaNovaComponent,
-    DetalhesPartidaFormComponent,
-    GameFormComponent,
-    GamesPartidaFormComponent,
     MessagesComponent,
     DivApareceComponent
   ],
@@ -38,7 +27,8 @@ import { DivApareceComponent } from './temporario/div-aparece/div-aparece.compon
     HttpClientModule, 
     FormsModule, 
     ReactiveFormsModule,
-    JogadorModule
+    JogadorModule,
+    PartidaModule
   ],
   providers: [
     {
