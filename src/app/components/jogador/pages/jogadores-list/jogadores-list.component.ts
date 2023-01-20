@@ -1,4 +1,4 @@
-import { Jogador } from './../../models/jogador';
+import { Jogador } from '../../../../models/jogador';
 import { Component, OnInit } from '@angular/core';
 import { JogadorService } from 'src/app/services/jogador.service';
 

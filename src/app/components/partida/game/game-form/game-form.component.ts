@@ -1,9 +1,9 @@
-import { Pontuacao } from './../../models/pontuacao';
-import { GameService } from './../../services/game.service';
+import { Pontuacao } from '../../../../models/pontuacao';
+import { GameService } from '../../../../services/game.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PartidaService } from './../../services/partida.service';
-import { Game } from './../../models/game';
-import { Partida } from './../../models/partida';
+import { PartidaService } from '../../../../services/partida.service';
+import { Game } from '../../../../models/game';
+import { Partida } from '../../../../models/partida';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 

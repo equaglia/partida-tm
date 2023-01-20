@@ -1,5 +1,5 @@
 import { FormGroup } from '@angular/forms';
-import { PartidaService } from './../../services/partida.service';
+import { PartidaService } from '../../../../services/partida.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

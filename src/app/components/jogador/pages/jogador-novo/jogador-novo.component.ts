@@ -1,5 +1,5 @@
-import { Jogador } from './../../models/jogador';
-import { JogadorService } from './../../services/jogador.service';
+import { Jogador } from '../../../../models/jogador';
+import { JogadorService } from '../../../../services/jogador.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

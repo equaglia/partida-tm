@@ -1,4 +1,4 @@
-import { Categoria, CategoriaMapping } from './../../models/enums/categoria';
+import { Categoria, CategoriaMapping } from '../../../models/enums/categoria';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { Jogador } from 'src/app/models/jogador';

@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { PartidaService } from './../../services/partida.service';
-import { Partida } from './../../models/partida';
+import { PartidaService } from '../../../../services/partida.service';
+import { Partida } from '../../../../models/partida';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
