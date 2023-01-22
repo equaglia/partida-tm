@@ -1,24 +1,17 @@
 <div class="card w-100 my-5">
   <div class="card-body">
-    <!-- <div *ngIf="refreshPage()">
-      <meta http-equiv="refresh" content="13">
-    </div> -->
     <button class="btn btn-primary" [routerLink]="['/partidas/nova']">
-      Nova Partida
-    </button>
+      Nova Partida    </button>
+    <router-outlet></router-outlet>
     <h2 class="card-title text-center">{{ lista }}</h2>
     <table class="table">
       <thead></thead>
       <tbody>
-    <a ng-click="reload()"></a>
-
-      <script>
-
-        $scope.reload = function()
-        {
-          location.reload(); 
-        }
-        </script>
+<!--         <a ng-click="reload()"></a> -->
+        <!-- <script>
+        $scope.reload = function() {
+          location.reload(); };
+        </script> -->
         <tr *ngFor="let ptd of partidas">
           <div class="accordion" id="accordionPartidas">
             <div class="accordion-item">
@@ -81,9 +74,6 @@
                     >
                       {{ ptd.partidaStatus }}
                     </button>
-                    <!--                     <a class="dropdown-item" [routerLink]="['/partida', ptd.id]"
-                  >Expandir</a
-                  > -->
                     <ul
                       class="dropdown-menu"
                       aria-labelledby="dropdownMenuButton"
@@ -139,8 +129,8 @@
                         <li>
                           <a
                             class="dropdown-item"
-                            (click)="finalizarPartida(ptd.id)"
-                            >Finalizar</a
+                            (click)="completarPartida(ptd.id)"
+                            >Completar</a
                           >
                         </li>
                       </div>
@@ -153,6 +143,15 @@
                           >
                         </li>
                       </div>
+                      <!--                       <div *ngIf="partidaEmAndamento(ptd) || partidaInterrompida(ptd) || partidaFinalizada(ptd)">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="corrigirGameFinalizado(ptd.games[ptd.gameAtualIndice-1], )"
+                            >Zerar último game</a
+                          >
+                        </li>
+                      </div> -->
                     </ul>
                   </div>
                 </td>

@@ -85,7 +85,24 @@ export class GamesPartidaFormComponent implements OnInit {
     return this.games!.indexOf(game!) + 1;
   }
 
-  partidaEmAndamento(partida: Partida | undefined): any {
+  /* partidaEmAndamento(partida: Partida | undefined): any {
     return this.partidaService.partidaEmAndamento(partida); 
+  } */
+
+  partidaEmAndamento(ptd: Partida): boolean {
+    return this.partidaService.partidaEmAndamento(ptd);
+  }
+  partidaInterrompida(ptd: Partida): boolean {
+    return this.partidaService.partidaInterrompida(ptd);
+  }
+  partidaCancelada(ptd: Partida): boolean {
+    return this.partidaService.partidaCancelada(ptd);
+  }
+  partidaFinalizada(ptd: Partida): boolean {
+    return this.partidaService.partidaFinalizada(ptd);
+  }
+
+  gameFinalizado(game: Game): boolean {
+    return this.gameService.gameFinalizado(game);
   }
 }

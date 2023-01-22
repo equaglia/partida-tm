@@ -1,7 +1,9 @@
-import { Router } from '@angular/router';
-import { PartidaService } from '../../../../services/partida.service';
-import { Partida } from '../../../../models/partida';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Partida } from '../../../../models/partida';
+import { PartidaService } from '../../../../services/partida.service';
+import { GameService } from './../../../../services/game.service';
 
 @Component({
   selector: 'app-partidas-list',
@@ -9,52 +11,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./partidas-list.component.css'],
 })
 export class PartidasListComponent implements OnInit {
-  //  export class PartidasListComponent implements OnInit, OnDestroy {
-    partidas: Partida[] = [];
-    lista: string = 'Lista de partidas';
-    //someSubscription: any;
-   /*  refr:  boolean = false;
-    refre: number =0; */
+  partidas: Partida[] = [];
+  lista: string = 'Lista de partidas';
 
-  constructor(private partidaService: PartidaService, private router: Router) {
+  constructor(
+    private partidaService: PartidaService,
+    private gameService: GameService,
+    private router: Router
+  ) {
     this.getPartidas();
-/*     this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    };
-    this.someSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        // Here is the dashing line comes in the picture.
-        // You need to tell the router that, you didn't visit or load the page previously, so mark the navigated flag to false as below.
-        this.router.navigated = false;
-      }
-    }); */
   }
-  
+
   getPartidas(): void {
     this.partidaService
       .getAll()
       .subscribe((partidas) => (this.partidas = partidas));
   }
   ngOnInit(): void {}
-
-/*   ngOnDestroy() {
-    if (this.someSubscription) {
-      this.someSubscription.unsubscribe();
-    }
-  }
- */
-/* refreshPage(): boolean {
-  //this.refre = this.refre == 0 ? 1 : 0;
-  if (this.refre == 1) return true;
-  return false;
-} */
-
-/* setRefreshPageTrue(): void {
-  this.refr = true;
-}
- */
-
-
 
   statusPartidaColor(ptd: Partida | undefined): string {
     return this.partidaService.statusPartidaColor(ptd);
@@ -76,8 +49,21 @@ export class PartidasListComponent implements OnInit {
   continuarPartidaInterrompida(id: number): void {
     this.partidaService.continuarPartidaInterrompida(id);
   }
-  finalizarPartida(id: number): void {
-    this.partidaService.finalizarPartida(id);
+  
+/*   zeraUltimoGame(ptd: Partida): void {
+    let gameId = this.partidaService.getGameEmAndamento(ptd);
+    if (gameId > 0) { //TODO mudar quando id não for numérico
+      this.gameService.putGamePontos(gameId, 0, 0);
+    }
+    this.partidaService.zeraUltimoGames(ptd);
+  } */
+
+  corrigirGameFinalizado(gameId: number, ptsA: number, ptsB: number): void {
+    this.gameService.corrigirGameFinalizado(gameId, ptsA, ptsB);
+  }
+
+  completarPartida(id: number): void {
+    this.partidaService.completarPartida(id);
   }
   cancelarPartida(id: number): void {
     this.partidaService.cancelarPartida(id);
@@ -103,7 +89,14 @@ export class PartidasListComponent implements OnInit {
   partidaCancelada(ptd: Partida): boolean {
     return this.partidaService.partidaCancelada(ptd);
   }
+  partidaFinalizada(ptd: Partida): boolean {
+    return this.partidaService.partidaFinalizada(ptd);
+  }
   jogadoresDisponiveis(ptd: Partida): boolean {
     return this.partidaService.jogadoresDisponiveis(ptd);
+  }
+
+  reload(): void {
+    location.reload(); 
   }
 }

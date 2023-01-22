@@ -1,5 +1,6 @@
-import { Jogador } from '../../../../models/jogador';
 import { Component, OnInit } from '@angular/core';
+
+import { Jogador } from '../../../../models/jogador';
 import { JogadorService } from 'src/app/services/jogador.service';
 
 @Component({
@@ -21,4 +22,8 @@ export class JogadoresListComponent implements OnInit {
   }
 
   ngOnInit(): void {} 
+
+  reload(): void {
+    location.reload(); 
+  }
 }

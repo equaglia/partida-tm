@@ -17,17 +17,19 @@ export class GameFormComponent implements OnInit {
   game: Game | undefined;
   pontuacao: Pontuacao[] = [];
   @ViewChild('gameForm') form!: NgForm;
+  acao: string = '';
 
   constructor(
     private gameService: GameService,
     private partidaService: PartidaService,
     private actRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getPartida();
     this.getGame();
+    this.acao = this.actRoute.snapshot.paramMap.get('acao')!;
   }
 
   getPartida() {
@@ -64,13 +66,24 @@ export class GameFormComponent implements OnInit {
   }
 
   updateGame(pontos: { pontosA: number; pontosB: number }) {
-    this.gameService.putGamePontos(
-      this.game?.id!,
-      pontos.pontosA,
-      pontos.pontosB
-    );
+    if (this.acao == 'pontuar') {
+      console.log(`updateGame 0 ${pontos.pontosA} ${pontos.pontosB}`)
+      this.gameService.putGamePontos(
+        this.game?.id!,
+        pontos.pontosA,
+        pontos.pontosB
+      );
+    } else
+    if (this.acao == 'corrigir') {
+      console.log(`updateGame 1 ${pontos.pontosA} ${pontos.pontosB}`)
+      this.gameService.corrigirGameFinalizado(
+        this.game!.id,
+        pontos.pontosA,
+        pontos.pontosB
+      );
+    } else console.log('ação incorreta');
     this.router.navigate(['/partidas']);
-   // this.router.
+    // this.router.
     //window.history.back();
   }
 }

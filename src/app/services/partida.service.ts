@@ -1,14 +1,15 @@
-import { StatusJogador } from './../models/enums/status-jogador';
+import { FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
+import { Injectable } from '@angular/core';
+
+import { environment } from './../../environments/environment';
+import { Partida } from './../models/partida';
 import {
   StatusPartida,
   StatusPartidaColor,
 } from './../models/enums/status-partida';
-import { FormGroup } from '@angular/forms';
-import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of, map } from 'rxjs';
-import { Partida } from './../models/partida';
-import { Injectable } from '@angular/core';
+import { StatusJogador } from './../models/enums/status-jogador';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,19 @@ export class PartidaService {
   
   constructor(private http: HttpClient) {}
   
+  createPartida(jg: FormGroup) {
+    console.log(jg.value);
+    this.http
+      .post<any>(
+        `${this.apiUrl}/${jg.controls['jogadorA'].value!}/${jg.controls[
+          'jogadorB'
+        ].value!}/${jg.controls['games'].value!}`,
+        {}
+      )
+      .subscribe();
+    console.log('criou partida ');
+  }
+
   getAll(): Observable<Partida[]> {
     return this.http.get<Partida[]>(this.apiUrl);
   }
@@ -48,19 +62,6 @@ export class PartidaService {
     return partida.games[partida.gameAtualIndice].id;
   }
   
-  createPartida(jg: FormGroup) {
-    console.log(jg.value);
-    this.http
-      .post<any>(
-        `${this.apiUrl}/${jg.controls['jogadorA'].value!}/${jg.controls[
-          'jogadorB'
-        ].value!}/${jg.controls['games'].value!}`,
-        {}
-      )
-      .subscribe();
-    console.log('criou partida ');
-  }
-
   duracaoPartida(partida: Partida | undefined): string {
     if (partida == undefined) return '00:00';
     partida = partida;
@@ -154,10 +155,10 @@ export class PartidaService {
     document.location.reload();
     console.log('retornou partida interrompida ');
   }
-  finalizarPartida(ptdId: number): void {
+  completarPartida(ptdId: number): void {
     this.http.put(`${this.apiUrl}/${ptdId}/completar`, {}).subscribe();
     document.location.reload();
-    console.log('iniciou partida ');
+    console.log('completou partida ');
   }
   cancelarPartida(ptdId: number): void {
     this.http.put(`${this.apiUrl}/${ptdId}/cancelar`, {}).subscribe();
@@ -185,6 +186,10 @@ export class PartidaService {
   partidaEmAndamento(ptd: Partida | undefined): boolean {
     if (ptd == undefined) return false;
     return ptd.partidaStatus == StatusPartida.EMANDAMENTO ? true : false;
+  }
+  partidaFinalizada(ptd: Partida | undefined): boolean {
+    if (ptd == undefined) return false;
+    return ptd.partidaStatus == StatusPartida.FINALIZADA ? true : false;
   }
   partidaInterrompida(ptd: Partida | undefined): boolean {
     if (ptd == undefined) return false;

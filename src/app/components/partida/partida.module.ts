@@ -11,12 +11,11 @@ import { PartidaRoutingModule } from './partida-routing.module';
 import { GameFormComponent } from './game/game-form/game-form.component';
 import { GamesPartidaFormComponent } from './game/games-partida-form/games-partida-form.component';
 
-
 @NgModule({
   declarations: [
+    PartidaNovaComponent,
     PartidasListComponent,
     PartidaFormComponent,
-    PartidaNovaComponent,
     DetalhesPartidaFormComponent,
     GameFormComponent,
     GamesPartidaFormComponent

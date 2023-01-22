@@ -1,26 +1,69 @@
 <div class="card w-100 my-5">
   <div class="card-body">
-    <h2 class="card-title text-center">
-    </h2>
+    <h2 class="card-title text-center"></h2>
     <table class="table">
-        <td></td>
-        <td>
-            <tr class="apagar">&nbsp;</tr> 
-            <tr>&nbsp;</tr> 
-            <tr><th>{{ partida?.jogadorA?.nome }}</th></tr>
-            <tr><th>{{ partida?.jogadorB?.nome }}</th></tr>
-        </td>
-        <td *ngFor="let gms of games">
-            <!-- <tr class="apagar">{{gms.id}}</tr> -->
-            <tr><th> {{gameOrdem(gms)}}</th></tr>
-            <tr>{{gms.pontos[0].pontos}}</tr>
-            <tr>{{gms.pontos[1].pontos}}</tr>
-        </td>
-      </table>
-      <div *ngIf="partidaEmAndamento(partida)">
-
-        <button class="btn btn-primary" [routerLink]="['/game', partida?.id, getGameEmAndamento()]">
-          Pontos</button>
+      <td></td>
+      <td>
+        <tr class="apagar">
+          &nbsp;
+        </tr>
+        <tr>
+          &nbsp;
+        </tr>
+        <tr>
+          <th>{{ partida?.jogadorA?.nome }}</th>
+        </tr>
+        <tr>
+          <th>{{ partida?.jogadorB?.nome }}</th>
+        </tr>
+      </td>
+      <td *ngFor="let gms of games">
+        <!-- <tr class="apagar">{{gms.id}}</tr> -->
+        <tr>
+          <th>{{ gameOrdem(gms) }}</th>
+        </tr>
+        <tr>
+          {{
+            gms.pontos[0].pontos
+          }}
+        </tr>
+        <tr>
+          {{
+            gms.pontos[1].pontos
+          }}
+        </tr>
+        <div
+          *ngIf="
+            partidaEmAndamento(partida!) ||
+            partidaInterrompida(partida!) ||
+            partidaFinalizada(partida!)
+          "
+        >
+          <div *ngIf="gameFinalizado(gms)">
+            <button
+              class="btn btn-primary"
+              [routerLink]="['/game', partida?.id, gms.id, 'corrigir']"
+            >
+              Corrigir
+            </button>
+          </div>
         </div>
+      </td>
+    </table>
+    <div *ngIf="partidaEmAndamento(partida!)">
+      <button
+        class="btn btn-primary"
+        [routerLink]="['/game', partida?.id, getGameEmAndamento(), 'pontuar']"
+      >
+        Pontos
+      </button>
+    </div>
+
+    <!--         <div *ngIf="partidaEmAndamento(partida!) || partidaInterrompida(partida!) || partidaFinalizada(partida!)">
+          <button class="btn btn-primary" [routerLink]="['/game', partida?.id, getGameEmAndamento()]">
+            Pontos</button>
+          </div>
+              (click)="corrigirGameFinalizado(ptd.games[ptd.gameAtualIndice-1], )"
+        </div> -->
   </div>
 </div>

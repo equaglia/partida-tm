@@ -6,8 +6,9 @@ import { JogadoresListComponent } from './pages/jogadores-list/jogadores-list.co
 
 const routes: Routes = [
   { path: '', component: JogadoresListComponent },
-  { path: 'jogadores', component: JogadoresListComponent },
-  { path: 'jogadores/novo', component: JogadorNovoComponent }
+  { path: 'jogadores', component: JogadoresListComponent, children : [
+    { path: 'novo', component: JogadorNovoComponent }
+  ] },
 ];
 
 @NgModule({

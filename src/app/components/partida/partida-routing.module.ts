@@ -7,10 +7,11 @@ import { PartidaNovaComponent } from './pages/partida-nova/partida-nova.componen
 import { PartidasListComponent } from './pages/partidas-list/partidas-list.component';
 
 const routes: Routes = [
-  { path: 'partidas', component: PartidasListComponent },
-  { path: 'partidas/nova', component: PartidaNovaComponent },
+  { path: 'partidas', component: PartidasListComponent, children : [
+    { path: 'nova', component: PartidaNovaComponent },
+  ] },
   { path: 'partida/:id', component: DetalhesPartidaFormComponent },
-  { path: 'game/:partidaId/:gameId', component: GameFormComponent }
+  { path: 'game/:partidaId/:gameId/:acao', component: GameFormComponent }
 ];
 
 @NgModule({
