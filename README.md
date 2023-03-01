@@ -1,5 +1,7 @@
 # PartidaTm
 
+Front end para gestão de PARTIDAS DE TÊNIS DE MESA, fazendo uso da API [Torneio-Tenis-de-Mesa](https://github.com/equaglia/Torneio-Tenis-de-Mesa)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.2.
 
 ## Development server
