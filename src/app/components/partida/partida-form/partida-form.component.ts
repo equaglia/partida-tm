@@ -34,6 +34,8 @@ export class PartidaFormComponent implements OnInit {
     private jogadorService: JogadorService, private router: Router
   ) {
     this.getJogadores();
+    console.log(this.jogadores);
+
   }
 
   ngOnInit(): void {
