@@ -1,10 +1,16 @@
-<app-header></app-header>
-<section class="container d-flex align-items-center justify-content-center">
-  <div class="row w-100">
-    <div class="col-12">
-      <router-outlet></router-outlet>
+<ng-container *ngIf="isAuthenticated$ | async; else loginPage">
+  <app-header (logout)="logout()"></app-header>
+  <section class="container d-flex align-items-center justify-content-center">
+    <div class="row w-100">
+      <div class="col-12">
+        <router-outlet></router-outlet>
+      </div>
     </div>
-  </div>
-</section>
-<app-messages></app-messages>
-<app-footer></app-footer>
+  </section>
+  <app-messages></app-messages>
+  <app-footer></app-footer>
+</ng-container>
+
+<ng-template #loginPage>
+  <router-outlet></router-outlet>
+</ng-template>

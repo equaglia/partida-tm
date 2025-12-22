@@ -5,6 +5,8 @@
 export const environment = {
   production: false,
   baseApiUrl: 'http://localhost:8080/',
+  jwtTokenKey: 'tm_jwt_token',
+  jwtExpiryKey: 'tm_jwt_expiry'
 };
 
 /*

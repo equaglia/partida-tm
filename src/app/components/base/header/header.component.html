@@ -1,7 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a routerLink="/jogadores" class="navbar-brand">Jogadores</a>
-    <a routerLink="/partidas" class="navbar-brand">Partidas</a>
-    <a routerLink="/temp" class="navbar-brand">Temporário</a>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">🏓 Tênis de Mesa</a>
+    
+    <div>
+      <a routerLink="/jogador" class="nav-link d-inline me-3">Jogadores</a>
+      <a routerLink="/partida" class="nav-link d-inline me-3">Partidas</a>
+      <button class="btn btn-outline-light btn-sm" (click)="onLogout()">
+        Logout
+      </button>
+    </div>
   </div>
 </nav>

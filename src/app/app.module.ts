@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AppRoutingModule } from './app-routing.module';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { HttpAuthInterceptor } from './interceptors/http-auth.interceptor';
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './components/base/header/header.component';
@@ -12,6 +16,7 @@ import { MessagesComponent } from './components/base/messages/messages.component
 import { DivApareceComponent } from './temporario/div-aparece/div-aparece.component';
 import { JogadorModule } from './components/jogador/jogador.module';
 import { PartidaModule } from './components/partida/partida.module';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,8 @@ import { PartidaModule } from './components/partida/partida.module';
     HeaderComponent,
     FooterComponent,
     MessagesComponent,
-    DivApareceComponent
+    DivApareceComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +39,13 @@ import { PartidaModule } from './components/partida/partida.module';
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
+      useClass: HttpAuthInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: HttpErrorInterceptor,
-      multi: true,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

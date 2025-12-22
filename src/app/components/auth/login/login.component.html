@@ -1,0 +1,61 @@
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+  <div class="card shadow-lg" style="width: 100%; max-width: 400px;">
+    <div class="card-body p-5">
+      <h1 class="card-title text-center mb-4">🏓 Tênis de Mesa</h1>
+      <h3 class="card-subtitle text-center text-muted mb-4">Login</h3>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="username" class="form-label">Usuário</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            formControlName="username"
+            [class.is-invalid]="submitted && f['username'].invalid"
+            placeholder="Digite seu usuário"
+            [disabled]="loading"
+          />
+          <div class="invalid-feedback" *ngIf="submitted && f['username'].invalid">
+            <small *ngIf="f['username'].errors?.['required']">Usuário é obrigatório</small>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="form-label">Senha</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            formControlName="password"
+            [class.is-invalid]="submitted && f['password'].invalid"
+            placeholder="Digite sua senha"
+            [disabled]="loading"
+          />
+          <div class="invalid-feedback" *ngIf="submitted && f['password'].invalid">
+            <small *ngIf="f['password'].errors?.['required']">Senha é obrigatória</small>
+          </div>
+        </div>
+
+        <div class="alert alert-danger" *ngIf="error" role="alert">
+          {{ error }}
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary w-100 mb-3"
+          [disabled]="loading"
+        >
+          <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+          {{ loading ? 'Autenticando...' : 'Entrar' }}
+        </button>
+      </form>
+
+      <hr />
+      <p class="text-center text-muted small mb-0">
+        <strong>Credenciais de teste:</strong><br/>
+        Usuário: <code>admin</code> | Senha: <code>123</code>
+      </p>
+    </div>
+  </div>
+</div>
